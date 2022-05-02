@@ -1,0 +1,113 @@
+.startScreen {
+    -fx-background-image:url('images/Backgrounds/menuscreen.jpg');
+    -fx-background-size: 100% 100%;
+}
+
+.characterScreen{
+    -fx-background-image:url('images/Backgrounds/characterscreen.jpg');
+    -fx-background-size: 100% 100%;
+}
+
+.statScreen{
+    -fx-background-image:url('images/Backgrounds/statScreen.jpg');
+    -fx-background-size: 100% 100%;
+}
+
+.levelScreen{
+    -fx-background-image:url('images/Backgrounds/levelScreen.jpg');
+    -fx-background-size: 100% 100%;
+}
+
+/*.levelEasy{
+    -fx-background-image:url('images/Backgrounds/levelEasy.jpg');
+    -fx-background-size: 100% 100%;
+}*/
+
+.lootScreen{
+    -fx-background-image:url('images/Backgrounds/lootScreen.jpg');
+    -fx-background-size: 100% 100%;
+}
+
+.deathScreen{
+    -fx-background-image:url('images/Backgrounds/deathScreen.PNG');
+    -fx-background-size: 100% 100%;
+}
+
+.button {
+    -fx-background-color: 
+        #000000,
+        linear-gradient(#000000, #000000),
+        linear-gradient(#000000, #000000),
+        linear-gradient(#580404, #140404);
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 3,2,2,2;
+    -fx-padding: 12 30 12 30;
+    -fx-text-fill: white;
+    -fx-font-size: 10px;
+}
+.button Text {
+    -fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.8) , 0, 0.0 , 0 , 1);
+}
+.button:hover{
+    -fx-text-fill: yellow;
+}
+.attack1{
+    -fx-background-image:url('images/skills/Icon1.png');
+    -fx-background-size: 100% 100%;
+}
+
+.attack2{
+    -fx-background-image:url('images/skills/Icon4.png');
+    -fx-background-size: 100% 100%;
+}
+
+.attack3{
+    -fx-background-image:url('images/skills/Icon5.png');
+    -fx-background-size: 100% 100%;
+}
+
+.attack4{
+    -fx-background-image:url('images/skills/Icon6.png');
+    -fx-background-size: 100% 100%;
+}
+
+.textPlayer{
+    -fx-fill: rgb(223, 201, 77);
+}
+
+.imageViewer{
+}
+
+.aa{
+
+}
+
+.ab1{
+
+}
+
+.ab2{
+
+}
+
+.backpackIcon{
+    -fx-background-image:url('images/Backgrounds/backpackIcon.png');
+    -fx-background-size: 100% 100%;
+       
+}
+
+.backpack{
+   /*-fx-background-image:url('images/Backgrounds/backpack.png');*/
+    -fx-background-size: 100% 100%;
+    -fx-background-color: linear-gradient(#580404, #140404);
+    -fx-border-color: black; 
+    -fx-border-width: 5px;
+}
+.backpack > .shadowImage {
+    -fx-background-color: blue;
+    -fx-border-color: black;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+.textTitel{
+    -fx-fill: white;
+}
