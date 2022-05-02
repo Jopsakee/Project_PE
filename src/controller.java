@@ -459,7 +459,7 @@ public class controller {
         fightScreen.setVisible(true);
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, true);
         Image img = new Image(
-                "images/Backgrounds/levelEasy.jpg");
+                "images/Backgrounds/mediumBackground.png");
         BackgroundImage bImg = new BackgroundImage(img,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
@@ -484,7 +484,7 @@ public class controller {
         fightScreen.setVisible(true);
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, true);
         Image img = new Image(
-                "images/Backgrounds/levelEasy.jpg");
+                "images/Backgrounds/mediumBackground.png");
         BackgroundImage bImg = new BackgroundImage(img,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
@@ -509,7 +509,7 @@ public class controller {
         fightScreen.setVisible(true);
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, true);
         Image img = new Image(
-                "images/Backgrounds/levelEasy.jpg");
+                "images/Backgrounds/mediumBackground.png");
         BackgroundImage bImg = new BackgroundImage(img,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
@@ -534,7 +534,7 @@ public class controller {
         fightScreen.setVisible(true);
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, true);
         Image img = new Image(
-                "images/Backgrounds/levelEasy.jpg");
+                "images/Backgrounds/hardBackground.png");
         BackgroundImage bImg = new BackgroundImage(img,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
@@ -559,7 +559,7 @@ public class controller {
         fightScreen.setVisible(true);
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, true);
         Image img = new Image(
-                "images/Backgrounds/levelEasy.jpg");
+                "images/Backgrounds/hardBackground.png");
         BackgroundImage bImg = new BackgroundImage(img,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
