@@ -11,39 +11,31 @@ public class Hero extends Entity {
         this.setHeadImage(headImage);
     }
 
-    public boolean isPrimeNr(int eHitPoints) {
-        for (int i = 1; i < (eHitPoints / 2) + 1; i++) {
-            if (i % 2 == 0) {
-                return false;
-            }
-        }
-        return true;
-    }
+    // public boolean isPrimeNr(int eHitPoints) {
+    // for (int i = 1; i < (eHitPoints / 2) + 1; i++) {
+    // if (i % 2 == 0) {
+    // return false;
+    // }
+    // }
+    // return true;
+    // }
 
-    public int isPrimeHitPoint() {
-        boolean count = false;
-        while (count == false) {
-            if (!isPrimeNr((int) (this.geteHitPoints()))) {
-                this.seteHitPoints((int) (this.geteHitPoints() - 1));
-            } else {
-                count = true;
-            }
+    // public int isPrimeHitPoint() {
+    // boolean count = false;
+    // while (count == false) {
+    // if (!isPrimeNr((int) (this.geteHitPoints()))) {
+    // this.seteHitPoints((int) (this.geteHitPoints() - 1));
+    // } else {
+    // count = true;
+    // }
 
-        }
-        return (int) (this.geteHitPoints());
-    }
+    // }
+    // return (int) (this.geteHitPoints());
+    // }
 
     public void Hit(Entity enemyHero) {
         System.out.println(this.getName() + " prepares to attack " + enemyHero.getName() + "..");
         int slaagkans = (int) (Math.random() * 51);
-        // if (this.getStrength() <= 0 || enemyHero.getStrength() <= 0)
-        // throw new IllegalArgumentException("You or the enemy hero does not have
-        // enough power to attack!");
-        // if (this.getProtection() < 0 || enemyHero.getProtection() < 0)
-        // throw new IllegalArgumentException("You or the enemy hero's protection values
-        // are not possible.");
-        // if (slaagkans < 0)
-        // throw new IllegalArgumentException("Attack chance can not be negative!");
         if (slaagkans >= enemyHero.getProtection()) {
             System.out.println("Hit!");
             this.calculateDamage(enemyHero);
@@ -55,7 +47,9 @@ public class Hero extends Entity {
 
     public void calculateDamage(Entity enemyHero) {
         double damage = 0;
-        damage = (this.getStrength() - 10) / 2D;
+        int weaponDamage = bonusStrength();
+        System.out.println("Wapen damage: " + weaponDamage);
+        damage = (int) ((this.getStrength() + weaponDamage) / 2D);
         if (damage >= enemyHero.geteHitPoints()) {
             this.deathBlowPercentage = (int) Math.random() * 100;
             this.seteHitPoints((int) (this.geteHitPoints()

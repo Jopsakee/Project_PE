@@ -6,17 +6,17 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Launch Current File",
-            "request": "launch",
-            "mainClass": "${file}"
-        },
-        {
-            "type": "java",
             "name": "Launch Main",
             "request": "launch",
             "mainClass": "Main",
             "vmArgs": "--module-path \"C:\\Program Files\\Java\\javafx-sdk-18\\lib\" --add-modules javafx.controls,javafx.fxml",
-            "projectName": "PE_project_d2615b94"
+            "projectName": "Project_PE_1b079fd0"
+        },
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
         }
     ]
 }

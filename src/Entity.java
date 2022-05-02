@@ -4,9 +4,7 @@ public abstract class Entity {
 	private String name;
 	private int eHitPoints;
 	private int hitpoints;
-	private double averageStrength = 10.00;
 	private double strength;
-	private int capacity;
 	private int protection;
 	private String image;
 
@@ -15,12 +13,7 @@ public abstract class Entity {
 		this.setHitpoints(hitpoints);
 		this.seteHitPoints(hitpoints);
 		this.setStrength(strength);
-		this.calculateCapacity(strength);
-		this.setCapacity();
 		this.setImage(image);
-		if (strength == 0) {
-			strength = this.averageStrength;
-		}
 	}
 
 	public boolean isValidName(String name) {
@@ -71,10 +64,6 @@ public abstract class Entity {
 		this.hitpoints = hitpoints;
 	}
 
-	public double getAverageStrength() {
-		return averageStrength;
-	}
-
 	public double getStrength() {
 		return strength;
 	}
@@ -86,22 +75,6 @@ public abstract class Entity {
 		if (strength < 0)
 			throw new IllegalArgumentException("Please fill in a positive strength amount.");
 		this.strength = strength;
-	}
-
-	public int calculateCapacity(double strength) {
-		return 0;
-	}
-
-	public int getCurrentCapacity() {
-		return 0;
-	}
-
-	public int getCapacity() {
-		return capacity;
-	}
-
-	public void setCapacity() {
-		this.capacity = calculateCapacity(this.getStrength());
 	}
 
 	public int getProtection() {
