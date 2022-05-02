@@ -50,6 +50,8 @@ public class controller {
     public Text armorText;
     public Text miniName;
     public Text miniHp;
+    public Text inspectStat;
+    public Text inspectStatType;
 
     public AnchorPane anchor;
 
@@ -80,6 +82,7 @@ public class controller {
     public ImageView equipmentLeft;
     public ImageView equipmentRight;
     public ImageView equipmentBody;
+    public ImageView inspectImg;
 
     public Button startButton;
     public Button butChar1;
@@ -141,6 +144,7 @@ public class controller {
     public Pane fightScreen;
     public Pane characterMenu;
     public Pane miniScreen;
+    public Pane inspect;
 
     public Label errorplayername;
     public Label playernamelabel;
@@ -200,11 +204,11 @@ public class controller {
         backpack = new Backpack(100, 20);
 
         /* Monsters initialiseren */
-        succubus = new Monster("Succubus", 7, 5, 40, 30, "images/Dark_Elves/Character6_face2.png");
+        succubus = new Monster("Succubus", 5, 40, 30, "images/Dark_Elves/Character6_face2.png");
         monsterList.add(succubus);
-        shaman = new Monster("Shaman", 7, 10, 30, 30, "images/Dark_Elves/Character4_face1.png");
+        shaman = new Monster("Shaman", 10, 30, 30, "images/Dark_Elves/Character4_face1.png");
         monsterList.add(shaman);
-        deathKnight = new Monster("DeathKnight", 12, 20, 50, 30, "images/Dark_Elves/Character1_face3.png");
+        deathKnight = new Monster("DeathKnight", 20, 50, 30, "images/Dark_Elves/Character1_face3.png");
         monsterList.add(deathKnight);
 
         /* Armor initialiseren */
@@ -566,7 +570,7 @@ public class controller {
     }
 
     public void clearBackpack() {
-        lootList.clear();
+        backpack.getBackpackContentList().clear();
         inventoryList.clear();
     }
 
@@ -916,7 +920,7 @@ public class controller {
                 deleteItem4();
                 equipmentBody.setImage(new Image(selectedHero.getHashmap().get(Anchor.BODY).getImage()));
             }
-        } else if (backpack.getBackpackContentList().get(0) instanceof Weapon) {
+        } else if (backpack.getBackpackContentList().get(3) instanceof Weapon) {
             if (selectedHero.getHashmap().get(Anchor.LEFT) == null) {
                 selectedHero.equipLeftWeapon(backpack.getBackpackContentList().get(3));
                 deleteItem4();
@@ -1089,6 +1093,7 @@ public class controller {
         backpack.getBackpackContentList().add(selectedHero.getHashmap().get(Anchor.LEFT));
         selectedHero.unequipWeapon1();
         equipmentLeft.setImage(null);
+        strText.setText(String.valueOf((int) (this.selectedHero.getStrength() + this.selectedHero.bonusStrength())));
         inventoryList.get(backpack.getBackpackContentList().size() - 1).setImage(new Image(
                 (backpack.getBackpackContentList().get(backpack.getBackpackContentList().size() - 1))
                         .getImage()));
@@ -1099,6 +1104,7 @@ public class controller {
         backpack.getBackpackContentList().add(selectedHero.getHashmap().get(Anchor.RIGHT));
         selectedHero.unequipWeapon2();
         equipmentRight.setImage(null);
+        strText.setText(String.valueOf((int) (this.selectedHero.getStrength() + this.selectedHero.bonusStrength())));
         inventoryList.get(backpack.getBackpackContentList().size() - 1).setImage(new Image(
                 (backpack.getBackpackContentList().get(backpack.getBackpackContentList().size() - 1))
                         .getImage()));
@@ -1148,10 +1154,11 @@ public class controller {
     public void expandCharacterMenu() {
         miniScreen.setVisible(false);
         characterMenu.setVisible(true);
+        inventory.setVisible(false);
         characterImage.setImage(new Image(selectedHero.getImage()));
         nameText.setText(selectedHero.getName());
         hpText.setText(selectedHero.geteHitPoints() + "/" + selectedHero.getHitpoints());
-        strText.setText(String.valueOf((int) (selectedHero.getStrength())));
+        strText.setText(String.valueOf((int) (this.selectedHero.getStrength() + this.selectedHero.bonusStrength())));
         armorText.setText(String.valueOf(selectedHero.getProtection()));
     }
 
@@ -1164,6 +1171,64 @@ public class controller {
 
     }
 
+    public void inspectItem() {
+        int teller = 0;
+        for (int i = 0; i < inventoryList.size(); i++) {
+            teller = i;
+            if (this.inventoryList.get(teller).isHover() == true && inventoryList.get(teller).getImage() != null) {
+                inspect.setVisible(true);
+                inspectItemTeller(teller);
+            }
+        }
+    }
+
+    public void inspectItemTeller(int teller) {
+
+        if (backpack.getBackpackContentList().get(teller) instanceof Weapon) {
+            inspectStatType.setText("Damage");
+            this.inspectStat.setText(
+                    String.valueOf((((Weapon) backpack.getBackpackContentList().get(teller)).getDamage())));
+        } else {
+            inspectStatType.setText("Armor");
+            this.inspectStat.setText(
+                    String.valueOf((((Armor) backpack.getBackpackContentList().get(teller)).getActualArmor())));
+        }
+        this.inspectImg.setImage(new Image(
+                (backpack.getBackpackContentList().get(teller))
+                        .getImage()));
+    }
+
+    public void inspectLoot() {
+        int teller = 0;
+        for (int i = 0; i < loot.size(); i++) {
+            teller = i;
+            if (this.loot.get(teller).isHover() == true && loot.get(teller).getImage() != null) {
+                inspect.setVisible(true);
+                inspectLootTeller(teller);
+            }
+        }
+    }
+
+    public void inspectLootTeller(int teller) {
+
+        if (lootList.get(teller) instanceof Weapon) {
+            inspectStatType.setText("Damage");
+            this.inspectStat.setText(
+                    String.valueOf((((Weapon) lootList.get(teller)).getDamage())));
+        } else {
+            inspectStatType.setText("Armor");
+            this.inspectStat.setText(
+                    String.valueOf((((Armor) lootList.get(teller)).getActualArmor())));
+        }
+        this.inspectImg.setImage(new Image(
+                (lootList.get(teller))
+                        .getImage()));
+    }
+
+    public void exitInspect() {
+        this.inspect.setVisible(false);
+    }
+
     /* backpack */
     public void openInventory() {
         // for (int i = 0; i < backpack.getBackpackContentList().size(); i++) {
@@ -1172,6 +1237,7 @@ public class controller {
         // Image(backpack.getBackpackContentList().get(i).getImage()));
         // }
         inventory.setVisible(true);
+        closeCharacterMenu();
         backpackImage.setVisible(false);
         backpackImageClosed.setVisible(true);
         // characterMenu.setVisible(false);

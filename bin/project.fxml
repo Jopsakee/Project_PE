@@ -199,15 +199,15 @@
                   <Font size="25.0" />
                </font>
             </Text>
-            <ImageView fx:id="inventorySlot1" fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="80.0" onMouseClicked="#selectItem1" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="inventorySlot2" fitHeight="100.0" fitWidth="100.0" layoutX="200.0" layoutY="80.0" onMouseClicked="#selectItem2" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="inventorySlot3" fitHeight="100.0" fitWidth="100.0" layoutX="362.0" layoutY="80.0" onMouseClicked="#selectItem3" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="inventorySlot4" fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="180.0" onMouseClicked="#selectItem4" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="inventorySlot5" fitHeight="100.0" fitWidth="100.0" layoutX="200.0" layoutY="180.0" onMouseClicked="#selectItem5" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="inventorySlot6" fitHeight="100.0" fitWidth="100.0" layoutX="362.0" layoutY="180.0" onMouseClicked="#selectItem6" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="inventorySlot7" fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="301.0" onMouseClicked="#selectItem7" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="inventorySlot8" fitHeight="100.0" fitWidth="100.0" layoutX="200.0" layoutY="301.0" onMouseClicked="#selectItem8" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="inventorySlot9" fitHeight="100.0" fitWidth="100.0" layoutX="362.0" layoutY="301.0" onMouseClicked="#selectItem9" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="inventorySlot1" fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="80.0" onMouseClicked="#selectItem1" onMouseEntered="#inspectItem" onMouseExited="#exitInspect" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="inventorySlot2" fitHeight="100.0" fitWidth="100.0" layoutX="200.0" layoutY="80.0" onMouseClicked="#selectItem2" onMouseEntered="#inspectItem" onMouseExited="#exitInspect" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="inventorySlot3" fitHeight="100.0" fitWidth="100.0" layoutX="362.0" layoutY="80.0" onMouseClicked="#selectItem3" onMouseEntered="#inspectItem" onMouseExited="#exitInspect" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="inventorySlot4" fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="180.0" onMouseClicked="#selectItem4" onMouseEntered="#inspectItem" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="inventorySlot5" fitHeight="100.0" fitWidth="100.0" layoutX="200.0" layoutY="180.0" onMouseClicked="#selectItem5" onMouseEntered="#inspectItem" onMouseExited="#exitInspect" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="inventorySlot6" fitHeight="100.0" fitWidth="100.0" layoutX="362.0" layoutY="180.0" onMouseClicked="#selectItem6" onMouseEntered="#inspectItem" onMouseExited="#exitInspect" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="inventorySlot7" fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="301.0" onMouseClicked="#selectItem7" onMouseEntered="#inspectItem" onMouseExited="#exitInspect" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="inventorySlot8" fitHeight="100.0" fitWidth="100.0" layoutX="200.0" layoutY="301.0" onMouseClicked="#selectItem8" onMouseEntered="#inspectItem" onMouseExited="#exitInspect" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="inventorySlot9" fitHeight="100.0" fitWidth="100.0" layoutX="362.0" layoutY="301.0" onMouseClicked="#selectItem9" onMouseEntered="#inspectItem" onMouseExited="#exitInspect" pickOnBounds="true" preserveRatio="true" />
             <VBox fx:id="invBox1" disable="true" layoutX="100.0" layoutY="45.0" prefHeight="117.0" prefWidth="94.0" visible="false">
                <children>
                   <Button fx:id="invButDel1" mnemonicParsing="false" onMouseClicked="#deleteItem1" prefHeight="39.0" prefWidth="105.0" text="Delete" />
@@ -280,9 +280,9 @@
                   <Font size="25.0" />
                </font>
             </Text>
-            <ImageView fx:id="lootImage1" fitHeight="100.0" fitWidth="100.0" layoutX="200.0" layoutY="111.0" onMouseClicked="#lootInBackpack1" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="lootImage2" fitHeight="100.0" fitWidth="100.0" layoutX="200.0" layoutY="211.0" onMouseClicked="#lootInBackpack2" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="lootImage3" fitHeight="100.0" fitWidth="100.0" layoutX="200.0" layoutY="336.0" onMouseClicked="#lootInBackpack3" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="lootImage1" fitHeight="100.0" fitWidth="100.0" layoutX="200.0" layoutY="111.0" onMouseClicked="#lootInBackpack1" onMouseEntered="#inspectLoot" onMouseExited="#exitInspect" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="lootImage2" fitHeight="100.0" fitWidth="100.0" layoutX="200.0" layoutY="211.0" onMouseClicked="#lootInBackpack2" onMouseEntered="#inspectLoot" onMouseExited="#exitInspect" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="lootImage3" fitHeight="100.0" fitWidth="100.0" layoutX="200.0" layoutY="336.0" onMouseClicked="#lootInBackpack3" onMouseEntered="#inspectLoot" onMouseExited="#exitInspect" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="potionImage" fitHeight="65.0" fitWidth="72.0" layoutX="79.0" layoutY="129.0" onMouseClicked="#lootPotion" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
@@ -425,6 +425,26 @@
                </font>
             </Text>
             <Text fill="#48ff00" layoutX="129.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hp:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane fx:id="inspect" layoutX="985.0" layoutY="14.0" prefHeight="213.0" prefWidth="347.0" styleClass="backpack" stylesheets="@stylesheet.css" visible="false">
+         <children>
+            <Text fill="#f5f5f5" layoutX="145.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item info">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="inspectStatType" fill="#f5f5f5" layoutX="224.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="100.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <ImageView fx:id="inspectImg" fitHeight="100.0" fitWidth="104.0" layoutX="41.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+            <Text fx:id="inspectStat" fill="#fff600" layoutX="230.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="87.1337890625">
                <font>
                   <Font size="20.0" />
                </font>

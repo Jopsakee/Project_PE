@@ -35,8 +35,8 @@ public class Hero extends Entity {
 
     public void Hit(Entity enemyHero) {
         System.out.println(this.getName() + " prepares to attack " + enemyHero.getName() + "..");
-        int slaagkans = (int) (Math.random() * 51);
-        if (slaagkans >= enemyHero.getProtection()) {
+        int slaagkans = (int) (Math.random() * 101);
+        if (slaagkans >= 20) {
             System.out.println("Hit!");
             this.calculateDamage(enemyHero);
         } else {
@@ -48,8 +48,9 @@ public class Hero extends Entity {
     public void calculateDamage(Entity enemyHero) {
         double damage = 0;
         int weaponDamage = bonusStrength();
-        System.out.println("Wapen damage: " + weaponDamage);
-        damage = (int) ((this.getStrength() + weaponDamage) / 2D);
+        damage = (int) ((this.getStrength() + weaponDamage - enemyHero.getProtection()) / 2D);
+        System.out.println("(Strength + weapon - protection)/2 -> (" + this.getStrength() + " + " + weaponDamage
+                + " - " + enemyHero.getProtection() + ")/2 = " + damage);
         if (damage >= enemyHero.geteHitPoints()) {
             this.deathBlowPercentage = (int) Math.random() * 100;
             this.seteHitPoints((int) (this.geteHitPoints()

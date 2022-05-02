@@ -69,11 +69,6 @@ public abstract class Entity {
 	}
 
 	public void setStrength(double strength) {
-		double tempStrength = Math.round(strength);
-		if (strength != tempStrength)
-			throw new IllegalArgumentException("Please insert a round number as strength amount.");
-		if (strength < 0)
-			throw new IllegalArgumentException("Please fill in a positive strength amount.");
 		this.strength = strength;
 	}
 
