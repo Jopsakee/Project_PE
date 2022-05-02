@@ -48,7 +48,7 @@ public class Hero extends Entity {
     public void calculateDamage(Entity enemyHero) {
         double damage = 0;
         int weaponDamage = bonusStrength();
-        damage = (int) ((this.getStrength() + weaponDamage - enemyHero.getProtection()) / 2D);
+        damage = (int) ((this.getStrength() + weaponDamage - (enemyHero.getProtection() * 0.4)) / 2D);
         System.out.println("(Strength + weapon - protection)/2 -> (" + this.getStrength() + " + " + weaponDamage
                 + " - " + enemyHero.getProtection() + ")/2 = " + damage);
         if (damage >= enemyHero.geteHitPoints()) {

@@ -143,6 +143,21 @@
             <Button fx:id="butEasy1" layoutX="466.0" layoutY="128.0" mnemonicParsing="false" onAction="#easyLevel1" prefHeight="41.0" prefWidth="94.0" text="Level 1" />
             <Button fx:id="butEasy2" layoutX="654.0" layoutY="128.0" mnemonicParsing="false" onAction="#easyLevel2" prefHeight="41.0" prefWidth="94.0" text="Level 2" />
             <Button fx:id="butEasy3" layoutX="847.0" layoutY="128.0" mnemonicParsing="false" onAction="#easyLevel3" prefHeight="41.0" prefWidth="94.0" text="Level 3" />
+            <Text fill="#ffb200" layoutX="626.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MEDIUM" textAlignment="CENTER" wrappingWidth="154.13671875">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Text>
+            <Button fx:id="butMed1" layoutX="466.0" layoutY="319.0" mnemonicParsing="false" onAction="#medLevel1" prefHeight="41.0" prefWidth="94.0" text="Level 1" />
+            <Button fx:id="butMed2" layoutX="654.0" layoutY="319.0" mnemonicParsing="false" onAction="#medLevel2" prefHeight="41.0" prefWidth="94.0" text="Level 2" />
+            <Button fx:id="butMed3" layoutX="847.0" layoutY="319.0" mnemonicParsing="false" onAction="#medLevel3" prefHeight="41.0" prefWidth="94.0" text="Level 3" />
+            <Text fill="RED" layoutX="624.0" layoutY="475.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HARD" textAlignment="CENTER" wrappingWidth="154.13671875">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Text>
+            <Button fx:id="butHard1" layoutX="560.0" layoutY="507.0" mnemonicParsing="false" onAction="#hardLevel1" prefHeight="41.0" prefWidth="94.0" text="Level 1" />
+            <Button fx:id="butHard2" layoutX="753.0" layoutY="507.0" mnemonicParsing="false" onAction="#hardLevel2" prefHeight="41.0" prefWidth="94.0" text="Level 2" />
          </children>
       </Pane>
       <Pane fx:id="fightScreen" prefHeight="945.0" prefWidth="1366.0" stylesheets="@stylesheet.css" visible="false">

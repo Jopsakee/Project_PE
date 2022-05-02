@@ -197,6 +197,11 @@ public class controller {
     private Monster deathKnight;
     private Monster shaman;
     private Monster succubus;
+    private Monster assassin;
+    private Monster witch;
+    private Monster deadPrince;
+    private Monster wolf;
+    private Monster armorKnight;
 
     public void initialize() throws IOException {
 
@@ -204,12 +209,22 @@ public class controller {
         backpack = new Backpack(100, 20);
 
         /* Monsters initialiseren */
-        succubus = new Monster("Succubus", 5, 40, 30, "images/Dark_Elves/Character6_face2.png");
+        succubus = new Monster("Succubus", 10, 40, 30, "images/Dark_Elves/Character6_face2.png");
         monsterList.add(succubus);
-        shaman = new Monster("Shaman", 10, 30, 30, "images/Dark_Elves/Character4_face1.png");
+        shaman = new Monster("Shaman", 15, 30, 30, "images/Dark_Elves/Character4_face1.png");
         monsterList.add(shaman);
         deathKnight = new Monster("DeathKnight", 20, 50, 30, "images/Dark_Elves/Character1_face3.png");
         monsterList.add(deathKnight);
+        assassin = new Monster("Assassin", 25, 30, 50, "images/Dark_Elves/Character8_face4.png");
+        monsterList.add(assassin);
+        witch = new Monster("Witch", 30, 50, 35, "images/Dark_Elves/Character2_face3.png");
+        monsterList.add(witch);
+        deadPrince = new Monster("DeadPrince", 35, 60, 20, "images/Dark_Elves/Character3_face1.png");
+        monsterList.add(deadPrince);
+        wolf = new Monster("Wolf", 40, 70, 40, "images/Dark_Elves/Character5_face2.png");
+        monsterList.add(wolf);
+        armorKnight = new Monster("ArmorKnight", 50, 70, 35, "images/Dark_Elves/Character7_face4.png");
+        monsterList.add(armorKnight);
 
         /* Armor initialiseren */
         helmet = new Armor(2, 5, "images/Armor/PNG/helmet.png");
@@ -428,6 +443,131 @@ public class controller {
         Background bGround = new Background(bImg);
         fightScreen.setBackground(bGround);
         this.setTargetMonster(deathKnight);
+        targetMonster.seteHitPoints(targetMonster.getHitpoints());
+        heroEasy.setImage(new Image(selectedHero.getImage()));
+        monsterEasy.setImage(new Image(this.getTargetMonster().getImage()));
+        healthHero.setText(String.valueOf(selectedHero.geteHitPoints()));
+        healthMonster.setText(String.valueOf(this.getTargetMonster().getHitpoints()));
+        for (int i = 0; i < lootList.size(); i++) {
+            loot.get(i).setImage(null);
+        }
+        lootList.clear();
+    }
+
+    public void medLevel1() {
+        levelScreen.setVisible(false);
+        fightScreen.setVisible(true);
+        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, true);
+        Image img = new Image(
+                "images/Backgrounds/levelEasy.jpg");
+        BackgroundImage bImg = new BackgroundImage(img,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                backgroundSize);
+        Background bGround = new Background(bImg);
+        fightScreen.setBackground(bGround);
+        this.setTargetMonster(witch);
+        targetMonster.seteHitPoints(targetMonster.getHitpoints());
+        heroEasy.setImage(new Image(selectedHero.getImage()));
+        monsterEasy.setImage(new Image(this.getTargetMonster().getImage()));
+        healthHero.setText(String.valueOf(selectedHero.geteHitPoints()));
+        healthMonster.setText(String.valueOf(this.getTargetMonster().getHitpoints()));
+        for (int i = 0; i < lootList.size(); i++) {
+            loot.get(i).setImage(null);
+        }
+        lootList.clear();
+    }
+
+    public void medLevel2() {
+        levelScreen.setVisible(false);
+        fightScreen.setVisible(true);
+        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, true);
+        Image img = new Image(
+                "images/Backgrounds/levelEasy.jpg");
+        BackgroundImage bImg = new BackgroundImage(img,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                backgroundSize);
+        Background bGround = new Background(bImg);
+        fightScreen.setBackground(bGround);
+        this.setTargetMonster(assassin);
+        targetMonster.seteHitPoints(targetMonster.getHitpoints());
+        heroEasy.setImage(new Image(selectedHero.getImage()));
+        monsterEasy.setImage(new Image(this.getTargetMonster().getImage()));
+        healthHero.setText(String.valueOf(selectedHero.geteHitPoints()));
+        healthMonster.setText(String.valueOf(this.getTargetMonster().getHitpoints()));
+        for (int i = 0; i < lootList.size(); i++) {
+            loot.get(i).setImage(null);
+        }
+        lootList.clear();
+    }
+
+    public void medLevel3() {
+        levelScreen.setVisible(false);
+        fightScreen.setVisible(true);
+        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, true);
+        Image img = new Image(
+                "images/Backgrounds/levelEasy.jpg");
+        BackgroundImage bImg = new BackgroundImage(img,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                backgroundSize);
+        Background bGround = new Background(bImg);
+        fightScreen.setBackground(bGround);
+        this.setTargetMonster(deadPrince);
+        targetMonster.seteHitPoints(targetMonster.getHitpoints());
+        heroEasy.setImage(new Image(selectedHero.getImage()));
+        monsterEasy.setImage(new Image(this.getTargetMonster().getImage()));
+        healthHero.setText(String.valueOf(selectedHero.geteHitPoints()));
+        healthMonster.setText(String.valueOf(this.getTargetMonster().getHitpoints()));
+        for (int i = 0; i < lootList.size(); i++) {
+            loot.get(i).setImage(null);
+        }
+        lootList.clear();
+    }
+
+    public void hardLevel1() {
+        levelScreen.setVisible(false);
+        fightScreen.setVisible(true);
+        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, true);
+        Image img = new Image(
+                "images/Backgrounds/levelEasy.jpg");
+        BackgroundImage bImg = new BackgroundImage(img,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                backgroundSize);
+        Background bGround = new Background(bImg);
+        fightScreen.setBackground(bGround);
+        this.setTargetMonster(wolf);
+        targetMonster.seteHitPoints(targetMonster.getHitpoints());
+        heroEasy.setImage(new Image(selectedHero.getImage()));
+        monsterEasy.setImage(new Image(this.getTargetMonster().getImage()));
+        healthHero.setText(String.valueOf(selectedHero.geteHitPoints()));
+        healthMonster.setText(String.valueOf(this.getTargetMonster().getHitpoints()));
+        for (int i = 0; i < lootList.size(); i++) {
+            loot.get(i).setImage(null);
+        }
+        lootList.clear();
+    }
+
+    public void hardLevel2() {
+        levelScreen.setVisible(false);
+        fightScreen.setVisible(true);
+        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, true);
+        Image img = new Image(
+                "images/Backgrounds/levelEasy.jpg");
+        BackgroundImage bImg = new BackgroundImage(img,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                backgroundSize);
+        Background bGround = new Background(bImg);
+        fightScreen.setBackground(bGround);
+        this.setTargetMonster(armorKnight);
         targetMonster.seteHitPoints(targetMonster.getHitpoints());
         heroEasy.setImage(new Image(selectedHero.getImage()));
         monsterEasy.setImage(new Image(this.getTargetMonster().getImage()));
