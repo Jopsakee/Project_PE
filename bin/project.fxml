@@ -15,6 +15,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
 <AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="944.0" prefWidth="1363.0" styleClass="anchor" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller">
    <children>
@@ -177,8 +178,8 @@
             <Button fx:id="autoAttack" layoutX="582.0" layoutY="890.0" mnemonicParsing="false" onAction="#autoAttack" prefHeight="41.0" prefWidth="55.0" styleClass="attack1" stylesheets="@stylesheet.css" />
             <Button fx:id="ability1" layoutX="656.0" layoutY="890.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="55.0" styleClass="attack2" stylesheets="@stylesheet.css" />
             <Button fx:id="ability2" layoutX="730.0" layoutY="890.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="55.0" styleClass="attack3" stylesheets="@stylesheet.css" />
-            <Rectangle fx:id="healthbarHero" arcHeight="5.0" arcWidth="5.0" fill="#20d700" height="24.0" layoutX="211.0" layoutY="341.0" stroke="BLACK" strokeType="INSIDE" width="294.0" />
-            <Rectangle fx:id="healthbarMonster" arcHeight="5.0" arcWidth="5.0" fill="RED" height="24.0" layoutX="786.0" layoutY="341.0" stroke="BLACK" strokeType="INSIDE" width="294.0" />
+            <Rectangle fx:id="healthbarHero" arcHeight="5.0" arcWidth="5.0" fill="#20d700" height="24.0" layoutX="211.0" layoutY="353.0" stroke="BLACK" strokeType="INSIDE" width="294.0" />
+            <Rectangle fx:id="healthbarMonster" arcHeight="5.0" arcWidth="5.0" fill="RED" height="24.0" layoutX="786.0" layoutY="353.0" stroke="BLACK" strokeType="INSIDE" width="294.0" />
             <Text fx:id="autoattack" fill="RED" layoutX="597.0" layoutY="874.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AA" textAlignment="CENTER" visible="false">
                <font>
                   <Font size="20.0" />
@@ -194,26 +195,28 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text fx:id="healthHero" fill="#fffb00" layoutX="330.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="55.291015625">
+            <Text fx:id="healthHero" fill="#fffb00" layoutX="330.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="55.291015625">
                <font>
                   <Font size="25.0" />
                </font>
             </Text>
-            <Text fx:id="healthMonster" fill="#fffb00" layoutX="905.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="55.291015625">
+            <Text fx:id="healthMonster" fill="#fffb00" layoutX="905.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="55.291015625">
                <font>
                   <Font size="25.0" />
                </font>
             </Text>
             <ImageView fx:id="slashEffectOnHero" fitHeight="150.0" fitWidth="200.0" layoutX="328.0" layoutY="461.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@images/Backgrounds/attackEffect-unscreen.gif" />
+                  <Image url="@images/Backgrounds/explosion.png" />
                </image>
             </ImageView>
             <ImageView fx:id="slashEffectOnMonster" fitHeight="150.0" fitWidth="200.0" layoutX="885.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@images/Backgrounds/attackEffect-unscreen.gif" />
+                  <Image url="@images/Backgrounds/explosion.png" />
                </image>
             </ImageView>
+            <TextFlow fx:id="combatlog" layoutX="905.0" layoutY="8.0" prefHeight="290.0" prefWidth="450.0" styleClass="combatlog" stylesheets="@stylesheet.css" />
+            <Button fx:id="butCombatlog" layoutX="1246.0" layoutY="293.0" mnemonicParsing="false" onAction="#combatLog" text="Combatlog" />
          </children>
       </Pane>
       <Pane fx:id="lootScreen" prefHeight="946.0" prefWidth="1366.0" styleClass="lootScreen" stylesheets="@stylesheet.css" visible="false">

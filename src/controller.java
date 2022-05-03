@@ -36,6 +36,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -141,6 +142,7 @@ public class controller {
     public Button invButCl7;
     public Button invButCl8;
     public Button invButCl9;
+    public Button butCombatLog;
 
     public VBox invBox1;
     public VBox invBox2;
@@ -211,6 +213,7 @@ public class controller {
     private int revives = 2;
     private int potions = 1;
     private int scoreCounter = 0;
+    private int nrOfLines;
 
     private List<Monster> monsterList = new ArrayList<Monster>();
     private List<Gear> lootTable = new ArrayList<Gear>();
@@ -231,6 +234,7 @@ public class controller {
     private JProgressBar healthbar1;
     private JProgressBar healthbar2;
     private JPanel healthbars;
+    public TextFlow combatlog;
 
     public void initialize() throws IOException {
 
@@ -331,7 +335,6 @@ public class controller {
         loot.add(lootImage1);
         loot.add(lootImage2);
         loot.add(lootImage3);
-
     }
 
     /* Van startscherm naar hero selection */
@@ -405,9 +408,23 @@ public class controller {
         lootScreen.setVisible(false);
         inventory.setVisible(false);
         lootbag.setVisible(false);
+        characterMenu.setVisible(false);
         potionCount.setText(String.valueOf(potions));
         scoreTeller.setText(String.valueOf(scoreCounter));
         levelChecker();
+        combatlog.getChildren().clear();
+        nrOfLines = 0;
+    }
+
+    int tellerCombatLog = 0;
+
+    public void combatLog() {
+        if (tellerCombatLog % 2 == 0) {
+            combatlog.setVisible(false);
+        } else {
+            combatlog.setVisible(true);
+        }
+        tellerCombatLog++;
     }
 
     public void levelChecker() {
@@ -797,41 +814,75 @@ public class controller {
         lootList.clear();
     }
 
+    TranslateTransition translate = new TranslateTransition();
+
     public void attackEffectOnMonster() {
         slashEffectOnMonster.setVisible(true);
-        TranslateTransition translate = new TranslateTransition();
         translate.setNode(slashEffectOnMonster);
-        translate.setDuration(Duration.millis(100));
+        translate.setDuration(Duration.millis(300));
         translate.setCycleCount(1);
         translate.play();
+        Text heroHit = new Text(this.selectedHero.getName() + " hit " + this.targetMonster.getName() + " for "
+                + this.selectedHero.getDamage() + " hitpoints!\n");
+        combatlog.getChildren().add(heroHit);
+        nrOfLines++;
         translate.setOnFinished((e) -> {
             slashEffectOnMonster.setVisible(false);
+            attackEffectOnHero();
+
         });
 
     }
 
+    public int currentHitpointsHero = 0;
+    TranslateTransition translate2 = new TranslateTransition();
+
     public void attackEffectOnHero() {
-        slashEffectOnHero.setVisible(true);
-        TranslateTransition translate = new TranslateTransition();
-        translate.setNode(slashEffectOnHero);
-        translate.setDuration(Duration.millis(100));
-        translate.setCycleCount(1);
-        translate.play();
-        translate.setOnFinished((e) -> {
-            slashEffectOnHero.setVisible(false);
-        });
+        if (currentHitpointsHero != this.selectedHero.geteHitPoints()) {
+            slashEffectOnHero.setVisible(true);
+            translate2.setNode(slashEffectOnHero);
+            translate2.setDuration(Duration.millis(300));
+            translate2.setCycleCount(1);
+            translate2.play();
+            Text monsterHit = new Text(this.targetMonster.getName() + " hit " + this.selectedHero.getName() + " for "
+                    + this.targetMonster.getDamage() + " hitpoints!\n");
+            combatlog.getChildren().add(monsterHit);
+            nrOfLines++;
+            healthHero.setText(String.valueOf(this.selectedHero.geteHitPoints()));
+            translate2.setOnFinished((e) -> {
+                slashEffectOnHero.setVisible(false);
+
+            });
+        } else {
+            Text monsterMiss = new Text(this.targetMonster.getName() + " missed!\n");
+            combatlog.getChildren().add(monsterMiss);
+            nrOfLines++;
+        }
     }
 
     /* ATTACK */
     public void autoAttack() {
+        if (nrOfLines >= 12) {
+            combatlog.getChildren().clear();
+            nrOfLines = 0;
+        }
+        int currentHitpointsMonster = this.targetMonster.geteHitPoints();
         this.selectedHero.Hit(this.getTargetMonster());
-        attackEffectOnMonster();
-
         healthMonster.setText(String.valueOf(this.targetMonster.geteHitPoints()));
         if (this.targetMonster.geteHitPoints() > 0) {
+            currentHitpointsHero = this.selectedHero.geteHitPoints();
             this.targetMonster.Hit(this.selectedHero);
-            // timeline.setDelay(Duration.millis(1000));
-            attackEffectOnHero();
+            /* Hero hit monster */
+            if (currentHitpointsMonster != this.targetMonster.geteHitPoints()) {
+                attackEffectOnMonster();
+            }
+            /* Hero mist */
+            else {
+                Text heroMiss = new Text(this.selectedHero.getName() + " missed!\n");
+                combatlog.getChildren().add(heroMiss);
+                nrOfLines++;
+                attackEffectOnHero();
+            }
 
             miniHp.setText(selectedHero.geteHitPoints() + "/" + selectedHero.getHitpoints());
             if (this.selectedHero.geteHitPoints() <= 0) {
@@ -846,12 +897,11 @@ public class controller {
                 potionSlot.setVisible(false);
                 potionCount.setVisible(false);
                 deathScreen.setVisible(true);
-            } else {
-                healthHero.setText(String.valueOf(this.selectedHero.geteHitPoints()));
             }
 
         } else {
             killTarget();
+
         }
 
     }
@@ -860,6 +910,11 @@ public class controller {
         int getal = 0;
         int teller = 0;
         if (this.targetMonster.geteHitPoints() <= 0) {
+            this.targetMonster.setDefeated(true);
+            Text monsterKillMessage = new Text("K.O.! " + this.selectedHero.getName() + " has bested "
+                    + this.targetMonster.getName() + " in combat! Leaving combat..\n");
+            combatlog.getChildren().add(monsterKillMessage);
+            nrOfLines++;
             scoreCounter++;
             lootImage1.setVisible(true);
             lootImage2.setVisible(true);

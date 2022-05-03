@@ -102,6 +102,19 @@
     -fx-background-color: linear-gradient(#580404, #140404);
     -fx-border-color: black; 
     -fx-border-width: 5px;
+    
+}
+
+.combatlog{
+    -fx-background-color: rgba(56, 56, 56, 0.5);
+    -fx-background-opacity: 0.5;
+    -fx-border-color: black; 
+    -fx-border-width: 5px;
+    -fx-font-size: 15px;
+    -fx-padding: 10px;
+}
+.combatlog > Text{
+    -fx-fill: yellow;
 }
 .backpack > .shadowImage {
     -fx-background-color: blue;

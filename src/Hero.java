@@ -4,6 +4,7 @@ public class Hero extends Entity {
     private int deathBlowPercentage;
     private int protection = 10;
     private String headImage;
+    private int damage = 0;
     private HashMap<Anchor, Gear> hashmap = new HashMap<Anchor, Gear>();
 
     public Hero(String name, double strength, int hitpoints, String image, String headImage) {
@@ -34,37 +35,40 @@ public class Hero extends Entity {
     // }
 
     public void Hit(Entity enemyHero) {
-        System.out.println(this.getName() + " prepares to attack " + enemyHero.getName() + "..");
+        // System.out.println(this.getName() + " prepares to attack " +
+        // enemyHero.getName() + "..");
         int slaagkans = (int) (Math.random() * 101);
         if (slaagkans >= 20) {
-            System.out.println("Hit!");
+            // System.out.println("Hit!");
             this.calculateDamage(enemyHero);
         } else {
-            System.out.println("Miss!");
+            // System.out.println("Miss!");
 
         }
     }
 
     public void calculateDamage(Entity enemyHero) {
-        double damage = 0;
+
         int weaponDamage = bonusStrength();
         damage = (int) ((this.getStrength() + weaponDamage - (enemyHero.getProtection() * 0.4)) / 2D);
-        System.out.println("(Strength + weapon - protection)/2 -> (" + this.getStrength() + " + " + weaponDamage
-                + " - " + enemyHero.getProtection() + ")/2 = " + damage);
+        // System.out.println("(Strength + weapon - protection)/2 -> (" +
+        // this.getStrength() + " + " + weaponDamage
+        // + " - " + enemyHero.getProtection() + ")/2 = " + damage);
         if (damage >= enemyHero.geteHitPoints()) {
             this.deathBlowPercentage = (int) Math.random() * 100;
             this.seteHitPoints((int) (this.geteHitPoints()
                     + this.getDeathBlowPercentage() * (this.getHitpoints() - this.geteHitPoints())));
-            System.out.println(this.getName() + " hit " + enemyHero.getName() + " for " + damage + " hitpoints!");
             enemyHero.seteHitPoints(0);
-            System.out.println(
-                    "K.O.! " + this.getName() + " has bested " + enemyHero.getName() + " in combat! Leaving combat..");
-
+            // System.out.println(
+            // "K.O.! " + this.getName() + " has bested " + enemyHero.getName() + " in
+            // combat! Leaving combat..");
         } else {
             enemyHero.seteHitPoints((int) (enemyHero.geteHitPoints() - damage));
-            System.out.println(
-                    "Hero, " + this.getName() + " hit " + enemyHero.getName() + " for " + damage + " hitpoints!");
-            System.out.println(enemyHero.getName() + " has " + enemyHero.geteHitPoints() + " hitpoints left!");
+            // System.out.println(
+            // "Hero, " + this.getName() + " hit " + enemyHero.getName() + " for " + damage
+            // + " hitpoints!");
+            // System.out.println(enemyHero.getName() + " has " + enemyHero.geteHitPoints()
+            // + " hitpoints left!");
         }
     }
 
@@ -86,6 +90,10 @@ public class Hero extends Entity {
 
     public int getDeathBlowPercentage() {
         return deathBlowPercentage;
+    }
+
+    public int getDamage() {
+        return damage;
     }
 
     public void unequipWeapon1() {
