@@ -1,12 +1,19 @@
+import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.text.View;
 
 import org.junit.Test.None;
 
+import javafx.animation.PauseTransition;
+import javafx.animation.TranslateTransition;
+import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -25,8 +32,11 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class controller {
     public TextField usernameField;
@@ -52,6 +62,7 @@ public class controller {
     public Text miniHp;
     public Text inspectStat;
     public Text inspectStatType;
+    public Text scoreTeller;
 
     public AnchorPane anchor;
 
@@ -83,6 +94,8 @@ public class controller {
     public ImageView equipmentRight;
     public ImageView equipmentBody;
     public ImageView inspectImg;
+    public ImageView slashEffectOnMonster;
+    public ImageView slashEffectOnHero;
 
     public Button startButton;
     public Button butChar1;
@@ -189,6 +202,8 @@ public class controller {
     public int level;
     private int revives = 2;
     private int potions = 1;
+    private int scoreCounter = 0;
+
     private List<Monster> monsterList = new ArrayList<Monster>();
     private List<Gear> lootTable = new ArrayList<Gear>();
     private List<Gear> lootList = new ArrayList<Gear>();
@@ -202,6 +217,12 @@ public class controller {
     private Monster deadPrince;
     private Monster wolf;
     private Monster armorKnight;
+
+    private JPanel healthbarHero;
+    private JPanel healthbarMonster;
+    private JProgressBar healthbar1;
+    private JProgressBar healthbar2;
+    private JPanel healthbars;
 
     public void initialize() throws IOException {
 
@@ -302,6 +323,7 @@ public class controller {
         loot.add(lootImage1);
         loot.add(lootImage2);
         loot.add(lootImage3);
+
     }
 
     /* Van startscherm naar hero selection */
@@ -376,6 +398,7 @@ public class controller {
         inventory.setVisible(false);
         lootbag.setVisible(false);
         potionCount.setText(String.valueOf(potions));
+        scoreTeller.setText(String.valueOf(scoreCounter));
     }
 
     // levels
@@ -398,6 +421,18 @@ public class controller {
         monsterEasy.setImage(new Image(this.getTargetMonster().getImage()));
         healthHero.setText(String.valueOf(selectedHero.geteHitPoints()));
         healthMonster.setText(String.valueOf(this.getTargetMonster().getHitpoints()));
+        /*
+         * healthbar1 = new JProgressBar(0, this.selectedHero.geteHitPoints());
+         * healthbar2 = new JProgressBar(0, this.targetMonster.geteHitPoints());
+         * healthbar1.setPreferredSize(new Dimension(300, 30));
+         * healthbar2.setPreferredSize(new Dimension(300, 30));
+         * healthbar1.setValue(this.selectedHero.geteHitPoints());
+         * healthbar2.setValue(this.targetMonster.geteHitPoints());
+         * 
+         * 
+         * healthbars.add(healthbar1);
+         * healthbars.add(healthbar2);
+         */
         for (int i = 0; i < lootList.size(); i++) {
             loot.get(i).setImage(null);
         }
@@ -423,6 +458,17 @@ public class controller {
         monsterEasy.setImage(new Image(this.getTargetMonster().getImage()));
         healthHero.setText(String.valueOf(selectedHero.geteHitPoints()));
         healthMonster.setText(String.valueOf(this.getTargetMonster().getHitpoints()));
+        /*
+         * healthbar1 = new JProgressBar(0, this.selectedHero.geteHitPoints());
+         * healthbar2 = new JProgressBar(0, this.targetMonster.geteHitPoints());
+         * healthbar1.setPreferredSize(new Dimension(300, 30));
+         * healthbar2.setPreferredSize(new Dimension(300, 30));
+         * healthbar1.setValue(this.selectedHero.geteHitPoints());
+         * healthbar2.setValue(this.targetMonster.geteHitPoints());
+         * 
+         * healthbars.add(healthbar1);
+         * healthbars.add(healthbar2);
+         */
         for (int i = 0; i < lootList.size(); i++) {
             loot.get(i).setImage(null);
         }
@@ -579,12 +625,39 @@ public class controller {
         lootList.clear();
     }
 
+    public void attackEffectOnMonster() {
+        slashEffectOnMonster.setVisible(true);
+        TranslateTransition translate = new TranslateTransition();
+        translate.setNode(slashEffectOnMonster);
+        translate.setDuration(Duration.millis(100));
+        translate.setCycleCount(1);
+        translate.play();
+        translate.setOnFinished((e) -> {
+            slashEffectOnMonster.setVisible(false);
+        });
+    }
+
+    public void attackEffectOnHero() {
+        slashEffectOnHero.setVisible(true);
+        TranslateTransition translate = new TranslateTransition();
+        translate.setNode(slashEffectOnHero);
+        translate.setDuration(Duration.millis(100));
+        translate.setCycleCount(1);
+        translate.play();
+        translate.setOnFinished((e) -> {
+            slashEffectOnHero.setVisible(false);
+        });
+    }
+
     /* ATTACK */
     public void autoAttack() {
         this.selectedHero.Hit(this.getTargetMonster());
+        attackEffectOnMonster();
         healthMonster.setText(String.valueOf(this.targetMonster.geteHitPoints()));
         if (this.targetMonster.geteHitPoints() > 0) {
             this.targetMonster.Hit(this.selectedHero);
+            attackEffectOnHero();
+
             miniHp.setText(selectedHero.geteHitPoints() + "/" + selectedHero.getHitpoints());
             if (this.selectedHero.geteHitPoints() <= 0) {
                 System.out.println("Hero, " + this.selectedHero.getName() + " died!\n");
@@ -612,6 +685,7 @@ public class controller {
         int getal = 0;
         int teller = 0;
         if (this.targetMonster.geteHitPoints() <= 0) {
+            scoreCounter++;
             lootImage1.setVisible(true);
             lootImage2.setVisible(true);
             lootImage3.setVisible(true);
