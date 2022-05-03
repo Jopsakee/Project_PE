@@ -12,6 +12,7 @@ import javax.swing.text.View;
 import org.junit.Test.None;
 
 import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
@@ -106,6 +107,11 @@ public class controller {
     public Button butEasy1;
     public Button butEasy2;
     public Button butEasy3;
+    public Button butMed1;
+    public Button butMed2;
+    public Button butMed3;
+    public Button butHard1;
+    public Button butHard2;
     public Button butRevive;
     public Button butClose;
     public Button invButDel1;
@@ -198,6 +204,8 @@ public class controller {
     private Weapon daggerVoid;
     private Weapon daggerFire;
     private Weapon daggerFireOffhand;
+
+    Timeline timeline = new Timeline();
 
     public int level;
     private int revives = 2;
@@ -399,6 +407,170 @@ public class controller {
         lootbag.setVisible(false);
         potionCount.setText(String.valueOf(potions));
         scoreTeller.setText(String.valueOf(scoreCounter));
+        levelChecker();
+    }
+
+    public void levelChecker() {
+        switch (scoreCounter) {
+            case 0:
+                butEasy2.setStyle("-fx-background-color: #A9A9A9");
+                butEasy2.setDisable(true);
+                butEasy3.setStyle("-fx-background-color: #A9A9A9");
+                butEasy3.setDisable(true);
+                butMed1.setStyle("-fx-background-color: #A9A9A9");
+                butMed1.setDisable(true);
+                butMed2.setStyle("-fx-background-color: #A9A9A9");
+                butMed2.setDisable(true);
+                butMed3.setStyle("-fx-background-color: #A9A9A9");
+                butMed3.setDisable(true);
+                butHard1.setStyle("-fx-background-color: #A9A9A9");
+                butHard1.setDisable(true);
+                butHard2.setStyle("-fx-background-color: #A9A9A9");
+                butHard2.setDisable(true);
+                break;
+            case 1:
+                butEasy2.setStyle(
+                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+                butEasy2.setDisable(false);
+                butEasy3.setStyle("-fx-background-color: #A9A9A9");
+                butEasy3.setDisable(true);
+                butMed1.setStyle("-fx-background-color: #A9A9A9");
+                butMed1.setDisable(true);
+                butMed2.setStyle("-fx-background-color: #A9A9A9");
+                butMed2.setDisable(true);
+                butMed3.setStyle("-fx-background-color: #A9A9A9");
+                butMed3.setDisable(true);
+                butHard1.setStyle("-fx-background-color: #A9A9A9");
+                butHard1.setDisable(true);
+                butHard2.setStyle("-fx-background-color: #A9A9A9");
+                butHard2.setDisable(true);
+                break;
+            case 2:
+                butEasy2.setStyle(
+                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+                butEasy2.setDisable(false);
+                butEasy3.setStyle(
+                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+                butEasy3.setDisable(false);
+                butMed1.setStyle("-fx-background-color: #A9A9A9");
+                butMed1.setDisable(true);
+                butMed2.setStyle("-fx-background-color: #A9A9A9");
+                butMed2.setDisable(true);
+                butMed3.setStyle("-fx-background-color: #A9A9A9");
+                butMed3.setDisable(true);
+                butHard1.setStyle("-fx-background-color: #A9A9A9");
+                butHard1.setDisable(true);
+                butHard2.setStyle("-fx-background-color: #A9A9A9");
+                butHard2.setDisable(true);
+                break;
+            case 3:
+                butEasy2.setStyle(
+                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+                butEasy2.setDisable(false);
+                butEasy3.setStyle(
+                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+                butEasy3.setDisable(false);
+                butMed1.setStyle(
+                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+                butMed1.setDisable(false);
+                butMed2.setStyle("-fx-background-color: #A9A9A9");
+                butMed2.setDisable(true);
+                butMed3.setStyle("-fx-background-color: #A9A9A9");
+                butMed3.setDisable(true);
+                butHard1.setStyle("-fx-background-color: #A9A9A9");
+                butHard1.setDisable(true);
+                butHard2.setStyle("-fx-background-color: #A9A9A9");
+                butHard2.setDisable(true);
+                break;
+            case 4:
+                butEasy2.setStyle(
+                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+                butEasy2.setDisable(false);
+                butEasy3.setStyle(
+                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+                butEasy3.setDisable(false);
+                butMed1.setStyle(
+                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+                butMed1.setDisable(false);
+                butMed2.setStyle(
+                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+                butMed2.setDisable(false);
+                butMed3.setStyle("-fx-background-color: #A9A9A9");
+                butMed3.setDisable(true);
+                butHard1.setStyle("-fx-background-color: #A9A9A9");
+                butHard1.setDisable(true);
+                butHard2.setStyle("-fx-background-color: #A9A9A9");
+                butHard2.setDisable(true);
+                break;
+            case 5:
+                butEasy2.setStyle(
+                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+                butEasy2.setDisable(false);
+                butEasy3.setStyle(
+                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+                butEasy3.setDisable(false);
+                butMed1.setStyle(
+                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+                butMed1.setDisable(false);
+                butMed2.setStyle(
+                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+                butMed2.setDisable(false);
+                butMed3.setStyle(
+                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+                butMed3.setDisable(false);
+                butHard1.setStyle("-fx-background-color: #A9A9A9");
+                butHard1.setDisable(true);
+                butHard2.setStyle("-fx-background-color: #A9A9A9");
+                butHard2.setDisable(true);
+                break;
+            case 6:
+                butEasy2.setStyle(
+                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+                butEasy2.setDisable(false);
+                butEasy3.setStyle(
+                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+                butEasy3.setDisable(false);
+                butMed1.setStyle(
+                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+                butMed1.setDisable(false);
+                butMed2.setStyle(
+                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+                butMed2.setDisable(false);
+                butMed3.setStyle(
+                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+                butMed3.setDisable(false);
+                butHard1.setStyle(
+                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+                butHard1.setDisable(false);
+                butHard2.setStyle("-fx-background-color: #A9A9A9");
+                butHard2.setDisable(true);
+                break;
+            case 7:
+                butEasy2.setStyle(
+                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+                butEasy2.setDisable(false);
+                butEasy3.setStyle(
+                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+                butEasy3.setDisable(false);
+                butMed1.setStyle(
+                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+                butMed1.setDisable(false);
+                butMed2.setStyle(
+                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+                butMed2.setDisable(false);
+                butMed3.setStyle(
+                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+                butMed3.setDisable(false);
+                butHard1.setStyle(
+                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+                butHard1.setDisable(false);
+                butHard2.setStyle(
+                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+                butHard2.setDisable(false);
+                break;
+            default:
+                break;
+        }
     }
 
     // levels
@@ -635,6 +807,7 @@ public class controller {
         translate.setOnFinished((e) -> {
             slashEffectOnMonster.setVisible(false);
         });
+
     }
 
     public void attackEffectOnHero() {
@@ -653,9 +826,11 @@ public class controller {
     public void autoAttack() {
         this.selectedHero.Hit(this.getTargetMonster());
         attackEffectOnMonster();
+
         healthMonster.setText(String.valueOf(this.targetMonster.geteHitPoints()));
         if (this.targetMonster.geteHitPoints() > 0) {
             this.targetMonster.Hit(this.selectedHero);
+            // timeline.setDelay(Duration.millis(1000));
             attackEffectOnHero();
 
             miniHp.setText(selectedHero.geteHitPoints() + "/" + selectedHero.getHitpoints());
