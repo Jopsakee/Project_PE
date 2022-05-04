@@ -65,6 +65,7 @@ public class controller {
     public Text inspectStat;
     public Text inspectStatType;
     public Text scoreTeller;
+    public Text gearType;
 
     public AnchorPane anchor;
 
@@ -245,86 +246,34 @@ public class controller {
         /* Backpack initialiseren */
         backpack = new Backpack(100, 20);
 
+        generateItems();
+
         /* Monsters initialiseren */
-        succubus = new Monster("Succubus", 10, 40, 30, "images/Dark_Elves/Character6_face2.png");
+        succubus = new Monster("Succubus", 10, 40, 30, "images/Dark_Elves/Character6_face2.png",
+                "images/Dark_Elves/Character6_face3.png");
         monsterList.add(succubus);
-        shaman = new Monster("Shaman", 15, 30, 30, "images/Dark_Elves/Character4_face1.png");
+        shaman = new Monster("Shaman", 15, 30, 30, "images/Dark_Elves/Character4_face1.png",
+                "images/Dark_Elves/Character4_face3.png");
         monsterList.add(shaman);
-        deathKnight = new Monster("DeathKnight", 20, 50, 30, "images/Dark_Elves/Character1_face3.png");
+        deathKnight = new Monster("DeathKnight", 20, 50, 30, "images/Dark_Elves/Character1_face2.png",
+                "images/Dark_Elves/Character1_face3.png");
         monsterList.add(deathKnight);
-        witch = new Monster("Witch", 30, 50, 35, "images/Dark_Elves/Character2_face3.png");
+        witch = new Monster("Witch", 30, 50, 35, "images/Dark_Elves/Character2_face1.png",
+                "images/Dark_Elves/Character2_face3.png");
         monsterList.add(witch);
-        assassin = new Monster("Assassin", 25, 30, 50, "images/Dark_Elves/Character8_face4.png");
+        assassin = new Monster("Assassin", 25, 30, 50, "images/Dark_Elves/Character8_face4.png",
+                "images/Dark_Elves/Character8_face3.png");
         monsterList.add(assassin);
-        deadPrince = new Monster("DeadPrince", 35, 60, 20, "images/Dark_Elves/Character3_face1.png");
+        deadPrince = new Monster("DeadPrince", 35, 60, 20, "images/Dark_Elves/Character3_face1.png",
+                "images/Dark_Elves/Character3_face3.png");
         monsterList.add(deadPrince);
-        wolf = new Monster("Wolf", 40, 70, 40, "images/Dark_Elves/Character5_face2.png");
+        wolf = new Monster("Wolf", 40, 70, 40, "images/Dark_Elves/Character5_face2.png",
+                "images/Dark_Elves/Character5_face3.png");
         monsterList.add(wolf);
-        armorKnight = new Monster("ArmorKnight", 50, 70, 35, "images/Dark_Elves/Character7_face4.png");
+        armorKnight = new Monster("ArmorKnight", 50, 70, 35, "images/Dark_Elves/Character7_face4.png",
+                "images/Dark_Elves/Character7_face3.png");
         monsterList.add(armorKnight);
 
-        /* Armor initialiseren */
-        helmet = new Helmet(2, 5, "images/Armor/PNG/helmet.png");
-        lootTable.add(helmet);
-        carapace = new Body(7, 10, "images/Armor/PNG/carapace.png");
-        lootTable.add(carapace);
-        leggings = new Leggings(5, 8, "images/Armor/PNG/leggings.png");
-        lootTable.add(leggings);
-        gloves = new Gloves(2, 3, "images/Armor/PNG/gloves.png");
-        lootTable.add(gloves);
-        boots = new Boots(2, 2, "images/Armor/PNG/boots.png");
-        lootTable.add(boots);
-        upgradedhelmet = new Helmet(2, 8, "images/Armor/PNG/upgradedhelmet.png");
-        lootTable.add(upgradedhelmet);
-        upgradedcarapace = new Body(8, 15, "images/Armor/PNG/upgradedcarapace.png");
-        lootTable.add(upgradedcarapace);
-        upgradedleggings = new Leggings(5, 12, "images/Armor/PNG/upgradedleggings.png");
-        lootTable.add(upgradedleggings);
-        upgradedgloves = new Gloves(2, 5, "images/Armor/PNG/upgradedgloves.png");
-        lootTable.add(upgradedgloves);
-        upgradedboots = new Boots(2, 4, "images/Armor/PNG/upgradedboots.png");
-        lootTable.add(upgradedboots);
-        darkcloak = new Body(3, 7, "images/Armor/PNG/darkcloak.png");
-        lootTable.add(darkcloak);
-        druidrobe = new Body(4, 9, "images/Armor/PNG/druidrobe.png");
-        lootTable.add(druidrobe);
-        firerobe = new Body(4, 8, "images/Armor/PNG/firerobe.png");
-        lootTable.add(firerobe);
-        necrorobe = new Body(5, 11, "images/Armor/PNG/necrorobe.png");
-        lootTable.add(necrorobe);
-        shamanrobe = new Body(6, 10, "images/Armor/PNG/shamanrobe.png");
-        lootTable.add(shamanrobe);
-
-        /* Weapons initialiseren */
-        // staffs
-        staffFire = new Weapon(5, 7, "images/Weapons/Staffs/2.png");
-        lootTable.add(staffFire);
-        staffSkull = new Weapon(8, 14, "images/Weapons/Staffs/6.png");
-        lootTable.add(staffSkull);
-        staffNature = new Weapon(3, 7, "images/Weapons/Staffs/4.png");
-        lootTable.add(staffNature);
-        staffVoid = new Weapon(10, 21, "images/Weapons/Staffs/8.png");
-        lootTable.add(staffVoid);
-        staffBroom = new Weapon(3, 7, "images/Weapons/Staffs/10.png");
-        lootTable.add(staffBroom);
-        // swords
-        sword = new Weapon(2, 7, "images/Weapons/Swords/1.png");
-        lootTable.add(sword);
-        sword2 = new Weapon(5, 14, "images/Weapons/Swords/2.png");
-        lootTable.add(sword2);
-        sword3 = new Weapon(5, 21, "images/Weapons/Swords/4.png");
-        lootTable.add(sword3);
-        // daggers
-        daggerSkull = new Weapon(2, 7, "images/Weapons/Daggers/3.png");
-        lootTable.add(daggerSkull);
-        daggerNature = new Weapon(3, 7, "images/Weapons/Daggers/7.png");
-        lootTable.add(daggerNature);
-        daggerVoid = new Weapon(5, 14, "images/Weapons/Daggers/8.png");
-        lootTable.add(daggerVoid);
-        daggerFire = new Weapon(2, 14, "images/Weapons/Daggers/9.png");
-        lootTable.add(daggerFire);
-        daggerFireOffhand = new Weapon(2, 14, "images/Weapons/Daggers/10.png");
-        lootTable.add(daggerFireOffhand);
         /* inventory slots toevoegen */
         inventoryList.add(inventorySlot1);
         inventoryList.add(inventorySlot2);
@@ -369,8 +318,9 @@ public class controller {
 
     // schermen afh van de geselecteerde hero
     public void selectedHero1() {
-        Hero hero1 = new Hero("Gert", 50, 100, "images/Heroes/PNG/Warriors/Character3_face3.png",
-                "images/Heroes/PNG/Warriors_faces_transperent/Character3_face3.png");
+        Hero hero1 = new Hero("Zoe", 50, 100, "images/Heroes/PNG/Warriors/Character3_face2.png",
+                "images/Heroes/PNG/Warriors_faces_transperent/Character3_face3.png",
+                "images/Heroes/PNG/Warriors/Character6_face3.png");
         characterSelection.setVisible(false);
         statScreen.setVisible(true);
         this.setSelectedHero(hero1);
@@ -383,7 +333,8 @@ public class controller {
 
     public void selectedHero2() {
         Hero hero2 = new Hero("Bob", 30, 130, "images/Heroes/PNG/Warriors/Character6_face4.png",
-                "images/Heroes/PNG/Warriors_faces_transperent/Character6_face4.png");
+                "images/Heroes/PNG/Warriors_faces_transperent/Character6_face4.png",
+                "images/Heroes/PNG/Warriors/Character6_face3.png");
         characterSelection.setVisible(false);
         statScreen.setVisible(true);
         this.setSelectedHero(hero2);
@@ -395,8 +346,9 @@ public class controller {
     }
 
     public void selectedHero3() {
-        Hero hero3 = new Hero("Jan", 70, 60, "images/Heroes/PNG/Warriors/Character2_face1.png",
-                "images/Heroes/PNG/Warriors_faces_transperent/Character2_face1.png");
+        Hero hero3 = new Hero("Gandalf", 70, 60, "images/Heroes/PNG/Warriors/Character2_face1.png",
+                "images/Heroes/PNG/Warriors_faces_transperent/Character2_face1.png",
+                "images/Heroes/PNG/Warriors/Character2_face3.png");
         characterSelection.setVisible(false);
         statScreen.setVisible(true);
         this.setSelectedHero(hero3);
@@ -429,6 +381,71 @@ public class controller {
         characterMenu.setVisible(false);
         potionCount.setText(String.valueOf(potions));
         scoreTeller.setText(String.valueOf(scoreCounter));
+    }
+
+    public void generateItems() {
+        /* Armor initialiseren */
+        helmet = new Helmet(2, "images/Armor/PNG/helmet.png");
+        lootTable.add(helmet);
+        carapace = new Body(7, "images/Armor/PNG/carapace.png");
+        lootTable.add(carapace);
+        leggings = new Leggings(5, "images/Armor/PNG/leggings.png");
+        lootTable.add(leggings);
+        gloves = new Gloves(2, "images/Armor/PNG/gloves.png");
+        lootTable.add(gloves);
+        boots = new Boots(2, "images/Armor/PNG/boots.png");
+        lootTable.add(boots);
+        upgradedhelmet = new Helmet(2, "images/Armor/PNG/upgradedhelmet.png");
+        lootTable.add(upgradedhelmet);
+        upgradedcarapace = new Body(8, "images/Armor/PNG/upgradedcarapace.png");
+        lootTable.add(upgradedcarapace);
+        upgradedleggings = new Leggings(5, "images/Armor/PNG/upgradedleggings.png");
+        lootTable.add(upgradedleggings);
+        upgradedgloves = new Gloves(2, "images/Armor/PNG/upgradedgloves.png");
+        lootTable.add(upgradedgloves);
+        upgradedboots = new Boots(2, "images/Armor/PNG/upgradedboots.png");
+        lootTable.add(upgradedboots);
+        darkcloak = new Body(3, "images/Armor/PNG/darkcloak.png");
+        lootTable.add(darkcloak);
+        druidrobe = new Body(4, "images/Armor/PNG/druidrobe.png");
+        lootTable.add(druidrobe);
+        firerobe = new Body(4, "images/Armor/PNG/firerobe.png");
+        lootTable.add(firerobe);
+        necrorobe = new Body(5, "images/Armor/PNG/necrorobe.png");
+        lootTable.add(necrorobe);
+        shamanrobe = new Body(6, "images/Armor/PNG/shamanrobe.png");
+        lootTable.add(shamanrobe);
+
+        /* Weapons initialiseren */
+        // staffs
+        staffFire = new Weapon(5, "images/Weapons/Staffs/2.png");
+        lootTable.add(staffFire);
+        staffSkull = new Weapon(8, "images/Weapons/Staffs/6.png");
+        lootTable.add(staffSkull);
+        staffNature = new Weapon(3, "images/Weapons/Staffs/4.png");
+        lootTable.add(staffNature);
+        staffVoid = new Weapon(10, "images/Weapons/Staffs/8.png");
+        lootTable.add(staffVoid);
+        staffBroom = new Weapon(3, "images/Weapons/Staffs/10.png");
+        lootTable.add(staffBroom);
+        // swords
+        sword = new Weapon(2, "images/Weapons/Swords/1.png");
+        lootTable.add(sword);
+        sword2 = new Weapon(5, "images/Weapons/Swords/2.png");
+        lootTable.add(sword2);
+        sword3 = new Weapon(5, "images/Weapons/Swords/4.png");
+        lootTable.add(sword3);
+        // daggers
+        daggerSkull = new Weapon(2, "images/Weapons/Daggers/3.png");
+        lootTable.add(daggerSkull);
+        daggerNature = new Weapon(3, "images/Weapons/Daggers/7.png");
+        lootTable.add(daggerNature);
+        daggerVoid = new Weapon(5, "images/Weapons/Daggers/8.png");
+        lootTable.add(daggerVoid);
+        daggerFire = new Weapon(2, "images/Weapons/Daggers/9.png");
+        lootTable.add(daggerFire);
+        daggerFireOffhand = new Weapon(2, "images/Weapons/Daggers/10.png");
+        lootTable.add(daggerFireOffhand);
     }
 
     public void next() {
@@ -835,6 +852,7 @@ public class controller {
         translate.setNode(slashEffectOnMonster);
         translate.setDuration(Duration.millis(300));
         translate.setCycleCount(1);
+        heroEasy.setImage(new Image(this.selectedHero.getAngryImage()));
         translate.play();
         Text heroHit = new Text(this.selectedHero.getName() + " hit " + this.targetMonster.getName() + " for "
                 + this.selectedHero.getDamage() + " hitpoints!\n");
@@ -843,7 +861,7 @@ public class controller {
         translate.setOnFinished((e) -> {
             slashEffectOnMonster.setVisible(false);
             attackEffectOnHero();
-
+            heroEasy.setImage(new Image(this.selectedHero.getImage()));
         });
 
     }
@@ -857,6 +875,7 @@ public class controller {
             translate2.setNode(slashEffectOnHero);
             translate2.setDuration(Duration.millis(300));
             translate2.setCycleCount(1);
+            monsterEasy.setImage(new Image(this.targetMonster.getAngryImage()));
             translate2.play();
             Text monsterHit = new Text(this.targetMonster.getName() + " hit " + this.selectedHero.getName() + " for "
                     + this.targetMonster.getDamage() + " hitpoints!\n");
@@ -865,7 +884,7 @@ public class controller {
             healthHero.setText(String.valueOf(this.selectedHero.geteHitPoints()));
             translate2.setOnFinished((e) -> {
                 slashEffectOnHero.setVisible(false);
-
+                monsterEasy.setImage(new Image(this.targetMonster.getImage()));
             });
         } else {
             Text monsterMiss = new Text(this.targetMonster.getName() + " missed!\n");
@@ -925,6 +944,7 @@ public class controller {
         int teller = 0;
         if (this.targetMonster.geteHitPoints() <= 0) {
             this.targetMonster.setDefeated(true);
+            generateItems();
             Text monsterKillMessage = new Text("K.O.! " + this.selectedHero.getName() + " has bested "
                     + this.targetMonster.getName() + " in combat! Leaving combat..\n");
             combatlog.getChildren().add(monsterKillMessage);
@@ -1028,8 +1048,10 @@ public class controller {
     }
 
     public void clearBackpack() {
+        for (int i = 0; i < backpack.getBackpackContentList().size(); i++) {
+            inventoryList.get(i).setImage(null);
+        }
         backpack.getBackpackContentList().clear();
-        inventoryList.clear();
     }
 
     /* open vbox */
@@ -1900,24 +1922,92 @@ public class controller {
 
         if (backpack.getBackpackContentList().get(teller) instanceof Weapon) {
             inspectStatType.setText("Damage");
+            gearType.setText("Weapon");
             this.inspectStat.setText(
                     String.valueOf((((Weapon) backpack.getBackpackContentList().get(teller)).getDamage())));
-        } else if (backpack.getBackpackContentList().get(teller) instanceof Armor) {
+        } else if (backpack.getBackpackContentList().get(teller) instanceof Body) {
             inspectStatType.setText("Armor");
+            gearType.setText("Body Armor");
             this.inspectStat.setText(
-                    String.valueOf((((Armor) backpack.getBackpackContentList().get(teller)).getActualArmor())));
+                    String.valueOf((((Body) backpack.getBackpackContentList().get(teller)).getActualArmor())));
         } else if (backpack.getBackpackContentList().get(teller) instanceof Gloves) {
-            inspectStatType.setText("Gloves");
+            inspectStatType.setText("Armor");
+            gearType.setText("Gloves");
             this.inspectStat.setText(
                     String.valueOf((((Gloves) backpack.getBackpackContentList().get(teller)).getActualArmor())));
         } else if (backpack.getBackpackContentList().get(teller) instanceof Boots) {
-            inspectStatType.setText("Boots");
+            inspectStatType.setText("Armor");
+            gearType.setText("Boots");
             this.inspectStat.setText(
                     String.valueOf((((Boots) backpack.getBackpackContentList().get(teller)).getActualArmor())));
+        } else if (backpack.getBackpackContentList().get(teller) instanceof Helmet) {
+            inspectStatType.setText("Armor");
+            gearType.setText("Helmet");
+            this.inspectStat.setText(
+                    String.valueOf((((Helmet) backpack.getBackpackContentList().get(teller)).getActualArmor())));
+        } else if (backpack.getBackpackContentList().get(teller) instanceof Leggings) {
+            inspectStatType.setText("Armor");
+            gearType.setText("Leggings");
+            this.inspectStat.setText(
+                    String.valueOf((((Leggings) backpack.getBackpackContentList().get(teller)).getActualArmor())));
         }
         this.inspectImg.setImage(new Image(
                 (backpack.getBackpackContentList().get(teller))
                         .getImage()));
+    }
+
+    public void inspectAnchor() {
+        if (equipmentLeft.isHover() == true && this.selectedHero.getHashmap().get(Anchor.LEFT) != null) {
+            inspect.setVisible(true);
+            inspectStatType.setText("Damage");
+            gearType.setText("Weapon");
+            this.inspectStat.setText(
+                    String.valueOf((((Weapon) this.selectedHero.getHashmap().get(Anchor.LEFT)).getDamage())));
+            inspectImg.setImage(new Image(this.selectedHero.getHashmap().get(Anchor.LEFT).getImage()));
+        } else if (equipmentRight.isHover() == true && this.selectedHero.getHashmap().get(Anchor.RIGHT) != null) {
+            inspect.setVisible(true);
+            inspectStatType.setText("Damage");
+            gearType.setText("Weapon");
+            this.inspectStat.setText(
+                    String.valueOf((((Weapon) this.selectedHero.getHashmap().get(Anchor.RIGHT)).getDamage())));
+            inspectImg.setImage(new Image(this.selectedHero.getHashmap().get(Anchor.RIGHT).getImage()));
+        } else if (equipmentBody.isHover() == true && this.selectedHero.getHashmap().get(Anchor.BODY) != null) {
+            inspect.setVisible(true);
+            inspectStatType.setText("Armor");
+            gearType.setText("Body Armor");
+            this.inspectStat.setText(
+                    String.valueOf((((Body) this.selectedHero.getHashmap().get(Anchor.BODY)).getActualArmor())));
+            inspectImg.setImage(new Image(this.selectedHero.getHashmap().get(Anchor.BODY).getImage()));
+        } else if (equipmentGloves.isHover() == true && this.selectedHero.getHashmap().get(Anchor.GLOVES) != null) {
+            inspect.setVisible(true);
+            inspectStatType.setText("Armor");
+            gearType.setText("Gloves");
+            this.inspectStat.setText(
+                    String.valueOf(((((Gloves) this.selectedHero.getHashmap().get(Anchor.GLOVES)).getActualArmor()))));
+            inspectImg.setImage(new Image(this.selectedHero.getHashmap().get(Anchor.GLOVES).getImage()));
+        } else if (equipmentLeggings.isHover() == true && this.selectedHero.getHashmap().get(Anchor.LEGGINGS) != null) {
+            inspect.setVisible(true);
+            inspectStatType.setText("Armor");
+            gearType.setText("Leggings");
+            this.inspectStat.setText(
+                    String.valueOf(
+                            (((Leggings) this.selectedHero.getHashmap().get(Anchor.LEGGINGS)).getActualArmor())));
+            inspectImg.setImage(new Image(this.selectedHero.getHashmap().get(Anchor.LEGGINGS).getImage()));
+        } else if (equipmentHelmet.isHover() == true && this.selectedHero.getHashmap().get(Anchor.HELMET) != null) {
+            inspect.setVisible(true);
+            inspectStatType.setText("Armor");
+            gearType.setText("Helmet");
+            this.inspectStat.setText(
+                    String.valueOf((((Helmet) this.selectedHero.getHashmap().get(Anchor.HELMET)).getActualArmor())));
+            inspectImg.setImage(new Image(this.selectedHero.getHashmap().get(Anchor.HELMET).getImage()));
+        } else if (equipmentBoots.isHover() == true && this.selectedHero.getHashmap().get(Anchor.BOOTS) != null) {
+            inspect.setVisible(true);
+            inspectStatType.setText("Armor");
+            gearType.setText("Boots");
+            this.inspectStat.setText(
+                    String.valueOf((((Boots) this.selectedHero.getHashmap().get(Anchor.BOOTS)).getActualArmor())));
+            inspectImg.setImage(new Image(this.selectedHero.getHashmap().get(Anchor.BOOTS).getImage()));
+        }
     }
 
     public void inspectLoot() {
@@ -1935,20 +2025,34 @@ public class controller {
 
         if (lootList.get(teller) instanceof Weapon) {
             inspectStatType.setText("Damage");
+            gearType.setText("Weapon");
             this.inspectStat.setText(
                     String.valueOf((((Weapon) lootList.get(teller)).getDamage())));
-        } else if (lootList.get(teller) instanceof Armor) {
+        } else if (lootList.get(teller) instanceof Body) {
             inspectStatType.setText("Armor");
+            gearType.setText("Body Armor");
             this.inspectStat.setText(
-                    String.valueOf((((Armor) lootList.get(teller)).getActualArmor())));
+                    String.valueOf((((Body) lootList.get(teller)).getActualArmor())));
         } else if (lootList.get(teller) instanceof Boots) {
-            inspectStatType.setText("Boots");
+            inspectStatType.setText("Armor");
+            gearType.setText("Boots");
             this.inspectStat.setText(
                     String.valueOf((((Boots) lootList.get(teller)).getActualArmor())));
         } else if (lootList.get(teller) instanceof Gloves) {
-            inspectStatType.setText("Gloves");
+            inspectStatType.setText("Armor");
+            gearType.setText("Gloves");
             this.inspectStat.setText(
                     String.valueOf((((Gloves) lootList.get(teller)).getActualArmor())));
+        } else if (lootList.get(teller) instanceof Helmet) {
+            inspectStatType.setText("Armor");
+            gearType.setText("Helmet");
+            this.inspectStat.setText(
+                    String.valueOf((((Helmet) lootList.get(teller)).getActualArmor())));
+        } else if (lootList.get(teller) instanceof Leggings) {
+            inspectStatType.setText("Armor");
+            gearType.setText("Leggings");
+            this.inspectStat.setText(
+                    String.valueOf((((Leggings) lootList.get(teller)).getActualArmor())));
         }
         this.inspectImg.setImage(new Image(
                 (lootList.get(teller))

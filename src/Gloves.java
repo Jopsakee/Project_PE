@@ -3,17 +3,13 @@ import java.util.List;
 
 public class Gloves extends Armor {
     private static List<Long> idGlovesList = new ArrayList<Long>();
-    private final int maxArmor = 100;
-    private final int minArmor = 1;
     private int actualArmor;
 
-    public Gloves(int weight, int actualArmor, String image) {
-        super(weight, actualArmor, image);
-        if (actualArmor > 0 && actualArmor <= 100) {
-            this.actualArmor = actualArmor;
-        } else {
-            throw new IllegalArgumentException("Armor value is not valid.");
-        }
+    public Gloves(int weight, String image) {
+        super(weight, image);
+        int min = 2;
+        int max = 5;
+        this.setActualArmor((int) (Math.floor(Math.random() * (max - min + 1) + min)));
     }
 
     public long generateId() {
@@ -34,14 +30,6 @@ public class Gloves extends Armor {
             }
         }
         return true;
-    }
-
-    public int getMaxArmor() {
-        return maxArmor;
-    }
-
-    public int getMinArmor() {
-        return minArmor;
     }
 
     public int getActualArmor() {

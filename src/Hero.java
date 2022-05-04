@@ -2,14 +2,16 @@ import java.util.HashMap;
 
 public class Hero extends Entity {
     private int deathBlowPercentage;
-    private int protection = 10;
+    private int protection = 0;
     private String headImage;
+    private String angryImage;
     private int damage = 0;
     private HashMap<Anchor, Gear> hashmap = new HashMap<Anchor, Gear>();
 
-    public Hero(String name, double strength, int hitpoints, String image, String headImage) {
+    public Hero(String name, double strength, int hitpoints, String image, String headImage, String angryImage) {
         super(name, hitpoints, strength, image);
         this.setHeadImage(headImage);
+        this.setAngryImage(angryImage);
     }
 
     // public boolean isPrimeNr(int eHitPoints) {
@@ -202,4 +204,11 @@ public class Hero extends Entity {
         this.headImage = headImage;
     }
 
+    public String getAngryImage() {
+        return angryImage;
+    }
+
+    public void setAngryImage(String angryImage) {
+        this.angryImage = angryImage;
+    }
 }

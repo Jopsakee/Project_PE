@@ -428,9 +428,9 @@
                   <Font size="22.0" />
                </font>
             </Text>
-            <ImageView fx:id="equipmentRight" fitHeight="120.0" fitWidth="120.0" layoutX="276.0" layoutY="334.0" onMouseClicked="#unequipWeaponRight" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="equipmentLeft" fitHeight="120.0" fitWidth="120.0" layoutX="14.0" layoutY="334.0" onMouseClicked="#unequipWeaponLeft" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="equipmentBody" fitHeight="120.0" fitWidth="120.0" layoutX="144.0" layoutY="424.0" onMouseClicked="#unequipBody" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="equipmentRight" fitHeight="120.0" fitWidth="120.0" layoutX="276.0" layoutY="334.0" onMouseClicked="#unequipWeaponRight" onMouseEntered="#inspectAnchor" onMouseExited="#exitInspect" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="equipmentLeft" fitHeight="120.0" fitWidth="120.0" layoutX="14.0" layoutY="334.0" onMouseClicked="#unequipWeaponLeft" onMouseEntered="#inspectAnchor" onMouseExited="#exitInspect" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="equipmentBody" fitHeight="120.0" fitWidth="120.0" layoutX="144.0" layoutY="424.0" onMouseClicked="#unequipBody" onMouseEntered="#inspectAnchor" onMouseExited="#exitInspect" pickOnBounds="true" preserveRatio="true" />
             <Text fill="#ff9900" layoutX="38.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LEFT" textAlignment="CENTER" wrappingWidth="72.0">
                <font>
                   <Font size="22.0" />
@@ -452,25 +452,25 @@
                   <Font size="22.0" />
                </font>
             </Text>
-            <ImageView fx:id="equipmentGloves" fitHeight="120.0" fitWidth="120.0" layoutX="14.0" layoutY="611.0" onMouseClicked="#unequipGloves" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="equipmentGloves" fitHeight="120.0" fitWidth="120.0" layoutX="14.0" layoutY="611.0" onMouseClicked="#unequipGloves" onMouseEntered="#inspectAnchor" onMouseExited="#exitInspect" pickOnBounds="true" preserveRatio="true" />
             <Text fill="#ff9900" layoutX="294.0" layoutY="605.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BOOTS" textAlignment="CENTER" wrappingWidth="83.9453125">
                <font>
                   <Font size="22.0" />
                </font>
             </Text>
-            <ImageView fx:id="equipmentBoots" fitHeight="120.0" fitWidth="120.0" layoutX="276.0" layoutY="611.0" onMouseClicked="#unequipBoots" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="equipmentBoots" fitHeight="120.0" fitWidth="120.0" layoutX="276.0" layoutY="611.0" onMouseClicked="#unequipBoots" onMouseEntered="#inspectAnchor" onMouseExited="#exitInspect" pickOnBounds="true" preserveRatio="true" />
             <Text fill="#ff9900" layoutX="162.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HELMET" textAlignment="CENTER" wrappingWidth="83.9453125">
                <font>
                   <Font size="22.0" />
                </font>
             </Text>
-            <ImageView fx:id="equipmentHelmet" fitHeight="120.0" fitWidth="120.0" layoutX="144.0" layoutY="274.0" onMouseClicked="#unequipHelmet" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="equipmentHelmet" fitHeight="120.0" fitWidth="120.0" layoutX="144.0" layoutY="274.0" onMouseClicked="#unequipHelmet" onMouseEntered="#inspectAnchor" onMouseExited="#exitInspect" pickOnBounds="true" preserveRatio="true" />
             <Text fill="#ff9900" layoutX="149.0" layoutY="573.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LEGGINGS" textAlignment="CENTER" wrappingWidth="109.18945312500023">
                <font>
                   <Font size="22.0" />
                </font>
             </Text>
-            <ImageView fx:id="equipmentLeggings" fitHeight="120.0" fitWidth="120.0" layoutX="144.0" layoutY="581.0" onMouseClicked="#unequipLeggings" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="equipmentLeggings" fitHeight="120.0" fitWidth="120.0" layoutX="144.0" layoutY="581.0" onMouseClicked="#unequipLeggings" onMouseEntered="#inspectAnchor" onMouseExited="#exitInspect" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
       <Pane fx:id="miniScreen" layoutX="14.0" layoutY="14.0" prefHeight="127.0" prefWidth="279.0" styleClass="backpack" stylesheets="@stylesheet.css" visible="false">
@@ -500,13 +500,23 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text fx:id="inspectStatType" fill="#f5f5f5" layoutX="224.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="100.0">
+            <Text fx:id="inspectStatType" fill="#f5f5f5" layoutX="224.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="100.0">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
             <ImageView fx:id="inspectImg" fitHeight="100.0" fitWidth="104.0" layoutX="41.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
-            <Text fx:id="inspectStat" fill="#fff600" layoutX="230.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="87.1337890625">
+            <Text fx:id="inspectStat" fill="#fff600" layoutX="230.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="87.1337890625">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fill="#f5f5f5" layoutX="253.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="gearType" fill="#fff600" layoutX="203.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="141.0">
                <font>
                   <Font size="20.0" />
                </font>
