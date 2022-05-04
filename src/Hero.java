@@ -183,19 +183,6 @@ public class Hero extends Entity {
         this.getHashmap().remove(anchor);
     }
 
-    public void heal() {
-        double percentage = (int) (Math.random() * 101) / 100D;
-        int increasedHp = (int) (percentage * (this.getHitpoints() - this.geteHitPoints()));
-        while (increasedHp < 40) {
-            percentage = (int) (Math.random() * 101) / 100D;
-            increasedHp = (int) (percentage * (this.getHitpoints() - this.geteHitPoints()) + 25);
-        }
-        this.seteHitPoints(this.geteHitPoints() + increasedHp);
-        if (this.geteHitPoints() > this.getHitpoints()) {
-            this.seteHitPoints(this.getHitpoints());
-        }
-    }
-
     public String getHeadImage() {
         return headImage;
     }

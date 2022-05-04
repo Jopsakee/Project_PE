@@ -50,25 +50,13 @@
 }
 .button:hover{
     -fx-text-fill: yellow;
+    -fx-cursor: hand;
 }
 .attack1{
     -fx-background-image:url('images/skills/Icon1.png');
     -fx-background-size: 100% 100%;
-}
-
-.attack2{
-    -fx-background-image:url('images/skills/Icon4.png');
-    -fx-background-size: 100% 100%;
-}
-
-.attack3{
-    -fx-background-image:url('images/skills/Icon5.png');
-    -fx-background-size: 100% 100%;
-}
-
-.attack4{
-    -fx-background-image:url('images/skills/Icon6.png');
-    -fx-background-size: 100% 100%;
+    -fx-border-color: black; 
+    -fx-border-width: 5px;
 }
 
 .textPlayer{
@@ -82,12 +70,25 @@
 
 }
 
-.ab1{
-
+.burnAbility{
+    -fx-background-image:url('images/skills/Icon44.png');
+    -fx-background-size: 100% 100%;
+    -fx-border-color: black; 
+    -fx-border-width: 5px;
 }
 
-.ab2{
+.blockAbility{
+    -fx-background-image:url('images/skills/Icon17.png');
+    -fx-background-size: 100% 100%;
+    -fx-border-color: black; 
+    -fx-border-width: 5px;
+}
 
+.healAbility{
+    -fx-background-image:url('images/skills/Icon11.png');
+    -fx-background-size: 100% 100%;
+    -fx-border-color: black; 
+    -fx-border-width: 5px;
 }
 
 .backpackIcon{

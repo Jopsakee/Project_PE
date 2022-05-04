@@ -175,9 +175,8 @@
          <children>
             <ImageView fx:id="heroEasy" fitHeight="407.0" fitWidth="246.0" layoutX="305.0" layoutY="407.0" pickOnBounds="true" preserveRatio="true" styleClass="imageViewer" />
             <ImageView fx:id="monsterEasy" fitHeight="410.0" fitWidth="154.0" layoutX="886.0" layoutY="406.0" pickOnBounds="true" preserveRatio="true" styleClass="imageViewer" />
-            <Button fx:id="autoAttack" layoutX="582.0" layoutY="890.0" mnemonicParsing="false" onAction="#autoAttack" prefHeight="41.0" prefWidth="55.0" styleClass="attack1" stylesheets="@stylesheet.css" />
-            <Button fx:id="ability1" layoutX="656.0" layoutY="890.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="55.0" styleClass="attack2" stylesheets="@stylesheet.css" />
-            <Button fx:id="ability2" layoutX="730.0" layoutY="890.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="55.0" styleClass="attack3" stylesheets="@stylesheet.css" />
+            <Button fx:id="autoAttack" layoutX="587.0" layoutY="879.0" mnemonicParsing="false" onAction="#autoAttack" prefHeight="55.0" prefWidth="72.0" styleClass="attack1" stylesheets="@stylesheet.css" />
+            <Button fx:id="burnAbility" layoutX="703.0" layoutY="879.0" mnemonicParsing="false" onAction="#burn" prefHeight="55.0" prefWidth="72.0" styleClass="burnAbility" stylesheets="@stylesheet.css" visible="false" />
             <Rectangle fx:id="healthbarHero" arcHeight="5.0" arcWidth="5.0" fill="#20d700" height="24.0" layoutX="211.0" layoutY="353.0" stroke="BLACK" strokeType="INSIDE" width="294.0" />
             <Rectangle fx:id="healthbarMonster" arcHeight="5.0" arcWidth="5.0" fill="RED" height="24.0" layoutX="786.0" layoutY="353.0" stroke="BLACK" strokeType="INSIDE" width="294.0" />
             <Text fx:id="autoattack" fill="RED" layoutX="597.0" layoutY="874.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AA" textAlignment="CENTER" visible="false">
@@ -217,6 +216,28 @@
             </ImageView>
             <TextFlow fx:id="combatlog" layoutX="905.0" layoutY="8.0" prefHeight="290.0" prefWidth="450.0" styleClass="combatlog" stylesheets="@stylesheet.css" />
             <Button fx:id="butCombatlog" layoutX="1246.0" layoutY="293.0" mnemonicParsing="false" onAction="#combatLog" text="Combatlog" />
+            <Button fx:id="blockAbility" layoutX="703.0" layoutY="879.0" mnemonicParsing="false" onAction="#bulwark" prefHeight="55.0" prefWidth="72.0" styleClass="blockAbility" stylesheets="@stylesheet.css" visible="false" />
+            <Button fx:id="healAbility" layoutX="703.0" layoutY="879.0" mnemonicParsing="false" onAction="#heal" prefHeight="55.0" prefWidth="72.0" styleClass="healAbility" stylesheets="@stylesheet.css" visible="false" />
+            <ImageView fx:id="bulwarkEffect" fitHeight="150.0" fitWidth="200.0" layoutX="309.0" layoutY="500.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@images/Backgrounds/bulwark.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="burnEffect" fitHeight="150.0" fitWidth="200.0" layoutX="858.0" layoutY="512.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@images/Backgrounds/burn.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="healEffect" fitHeight="150.0" fitWidth="200.0" layoutX="283.0" layoutY="500.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@images/Backgrounds/heal.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="cooldownText" disable="true" fill="#e5ff00" layoutX="724.0" layoutY="914.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="30.29296875">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
       <Pane fx:id="lootScreen" prefHeight="946.0" prefWidth="1366.0" styleClass="lootScreen" stylesheets="@stylesheet.css" visible="false">
@@ -368,6 +389,7 @@
                   <Font size="25.0" />
                </font>
             </Text>
+            <Button fx:id="butExit" disable="true" layoutX="626.0" layoutY="847.0" mnemonicParsing="false" onAction="#Exit" prefHeight="55.0" prefWidth="114.0" text="Exit" visible="false" />
          </children>
       </Pane>
       <ImageView fx:id="potionSlot" fitHeight="65.0" fitWidth="72.0" layoutX="188.0" layoutY="865.0" onMouseClicked="#usePotion" pickOnBounds="true" preserveRatio="true" visible="false">

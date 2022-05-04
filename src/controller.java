@@ -14,6 +14,7 @@ import org.junit.Test.None;
 import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -66,6 +67,7 @@ public class controller {
     public Text inspectStatType;
     public Text scoreTeller;
     public Text gearType;
+    public Text cooldownText;
 
     public AnchorPane anchor;
 
@@ -103,6 +105,9 @@ public class controller {
     public ImageView inspectImg;
     public ImageView slashEffectOnMonster;
     public ImageView slashEffectOnHero;
+    public ImageView burnEffect;
+    public ImageView healEffect;
+    public ImageView bulwarkEffect;
 
     public Button startButton;
     public Button butChar1;
@@ -148,6 +153,10 @@ public class controller {
     public Button invButCl8;
     public Button invButCl9;
     public Button butCombatLog;
+    public Button burnAbility;
+    public Button blockAbility;
+    public Button healAbility;
+    public Button butExit;
 
     public VBox invBox1;
     public VBox invBox2;
@@ -219,6 +228,9 @@ public class controller {
     private int potions = 1;
     private int scoreCounter = 0;
     private int nrOfLines;
+    private int abilityCooldown = 0;
+    private int bulwarkDuration;
+    private int percent;
 
     private List<Monster> monsterList = new ArrayList<Monster>();
     private List<Gear> lootTable = new ArrayList<Gear>();
@@ -462,6 +474,16 @@ public class controller {
         inventory.setVisible(false);
         lootbag.setVisible(false);
         characterMenu.setVisible(false);
+        abilityCooldown = 0;
+        cooldownText.setVisible(false);
+        cooldownText.setDisable(true);
+        if (this.selectedHero.getName().equals("Zoe")) {
+            burnAbility.setDisable(false);
+        } else if (this.selectedHero.getName().equals("Bob")) {
+            blockAbility.setDisable(false);
+        } else {
+            healAbility.setDisable(false);
+        }
         potionCount.setText(String.valueOf(potions));
         scoreTeller.setText(String.valueOf(scoreCounter));
         // levelChecker();
@@ -641,6 +663,19 @@ public class controller {
         monsterEasy.setImage(new Image(this.getTargetMonster().getImage()));
         healthHero.setText(String.valueOf(selectedHero.geteHitPoints()));
         healthMonster.setText(String.valueOf(this.getTargetMonster().getHitpoints()));
+        if (this.selectedHero.getName().equals("Zoe")) {
+            burnAbility.setVisible(true);
+            healAbility.setDisable(true);
+            blockAbility.setDisable(true);
+        } else if (this.selectedHero.getName().equals("Bob")) {
+            blockAbility.setVisible(true);
+            healAbility.setDisable(true);
+            burnAbility.setDisable(true);
+        } else {
+            healAbility.setVisible(true);
+            burnAbility.setDisable(true);
+            blockAbility.setDisable(true);
+        }
         /*
          * healthbar1 = new JProgressBar(0, this.selectedHero.geteHitPoints());
          * healthbar2 = new JProgressBar(0, this.targetMonster.geteHitPoints());
@@ -901,10 +936,23 @@ public class controller {
         }
         int currentHitpointsMonster = this.targetMonster.geteHitPoints();
         this.selectedHero.Hit(this.getTargetMonster());
+        if (abilityCooldown != 0) {
+            abilityCooldown--;
+            cooldownText.setText(String.valueOf(abilityCooldown));
+        }
+        if (abilityCooldown == 0) {
+            cooldownText.setVisible(false);
+            cooldownText.setDisable(true);
+            blockAbility.setDisable(false);
+        }
         healthMonster.setText(String.valueOf(this.targetMonster.geteHitPoints()));
         if (this.targetMonster.geteHitPoints() > 0) {
             currentHitpointsHero = this.selectedHero.geteHitPoints();
             this.targetMonster.Hit(this.selectedHero);
+            bulwarkDuration--;
+            if (bulwarkDuration == 0) {
+                this.selectedHero.setProtection(this.selectedHero.getProtection() - percent);
+            }
             /* Hero hit monster */
             if (currentHitpointsMonster != this.targetMonster.geteHitPoints()) {
                 attackEffectOnMonster();
@@ -925,16 +973,102 @@ public class controller {
                 if (revives == 0) {
                     butRevive.setDisable(true);
                     butRevive.setVisible(false);
+                    butExit.setDisable(false);
+                    butExit.setVisible(true);
                 }
                 fightScreen.setVisible(false);
                 potionSlot.setVisible(false);
                 potionCount.setVisible(false);
                 deathScreen.setVisible(true);
+                characterMenu.setVisible(false);
             }
 
         } else {
             killTarget();
 
+        }
+
+    }
+
+    public void burn() {
+
+    }
+
+    TranslateTransition translateBulwark = new TranslateTransition();
+
+    public void bulwarkEffect() {
+        translateBulwark.setNode(bulwarkEffect);
+        bulwarkEffect.setVisible(true);
+        translateBulwark.setDuration(Duration.millis(1000));
+        translateBulwark.setCycleCount(1);
+        translateBulwark.play();
+        translateBulwark.setOnFinished((e) -> {
+            bulwarkEffect.setVisible(false);
+        });
+    }
+
+    public void bulwark() {
+        if (abilityCooldown == 0) {
+            bulwarkEffect();
+            if (nrOfLines >= 12) {
+                combatlog.getChildren().clear();
+                nrOfLines = 0;
+            }
+            abilityCooldown = 4;
+            cooldownText.setVisible(true);
+            cooldownText.setText(String.valueOf(abilityCooldown));
+            bulwarkDuration = 2;
+            percent = (int) (this.selectedHero.getProtection() * 0.4D);
+            this.selectedHero.setProtection(this.selectedHero.getProtection() + percent);
+            Text bulwarkText = new Text(
+                    this.selectedHero.getName() + " activated Bulwark and gained 40% extra protection for 2 turns!\n");
+            combatlog.getChildren().add(bulwarkText);
+            nrOfLines++;
+            blockAbility.setDisable(true);
+        } else {
+            blockAbility.setDisable(true);
+        }
+    }
+
+    TranslateTransition translateHeal = new TranslateTransition();
+
+    public void healEffect() {
+        translateHeal.setNode(healEffect);
+        healEffect.setVisible(true);
+        translateHeal.setDuration(Duration.millis(1000));
+        translateHeal.setCycleCount(1);
+        translateHeal.play();
+        translateHeal.setOnFinished((e) -> {
+            healEffect.setVisible(false);
+        });
+    }
+
+    public void heal() {
+        if (abilityCooldown == 0) {
+            healEffect();
+            if (nrOfLines >= 12) {
+                combatlog.getChildren().clear();
+                nrOfLines = 0;
+            }
+            abilityCooldown = 4;
+            cooldownText.setVisible(true);
+            cooldownText.setText(String.valueOf(abilityCooldown));
+            double percentage = 0.4;
+            int increasedHp = (int) (percentage
+                    * (this.selectedHero.getHitpoints()));
+            this.selectedHero.seteHitPoints(this.selectedHero.geteHitPoints() + increasedHp);
+            if (this.selectedHero.geteHitPoints() > this.selectedHero.getHitpoints()) {
+                this.selectedHero.seteHitPoints(this.selectedHero.getHitpoints());
+            }
+            Text healText = new Text(
+                    this.selectedHero.getName() + " activated Heal and gained " + increasedHp + " hitpoints!\n");
+            combatlog.getChildren().add(healText);
+            nrOfLines++;
+            healthHero.setText(String.valueOf(this.selectedHero.geteHitPoints()));
+            miniHp.setText(String.valueOf(this.selectedHero.geteHitPoints() + "/" + this.selectedHero.getHitpoints()));
+            healAbility.setDisable(true);
+        } else {
+            healAbility.setDisable(true);
         }
 
     }
@@ -1867,8 +2001,17 @@ public class controller {
             potionSlot.setVisible(true);
             potionCount.setVisible(true);
             System.out.println(selectedHero.getName() + " has been revived!\n");
+            abilityCooldown = 0;
+            cooldownText.setVisible(false);
+            cooldownText.setDisable(true);
+            if (this.selectedHero.getName().equals("Bob")) {
+                blockAbility.setDisable(false);
+            } else if (this.selectedHero.getName().equals("Gandalf")) {
+                healAbility.setDisable(false);
+            } else {
+                burnAbility.setDisable(false);
+            }
         }
-
     }
 
     public void usePotion() {
@@ -2129,5 +2272,9 @@ public class controller {
 
     public void setInventoryList(List<ImageView> InventoryList) {
         inventoryList = InventoryList;
+    }
+
+    public void Exit() {
+        Platform.exit();
     }
 }
