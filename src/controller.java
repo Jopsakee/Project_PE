@@ -68,6 +68,9 @@ public class controller {
     public Text scoreTeller;
     public Text gearType;
     public Text cooldownText;
+    public Text monsterFightName;
+    public Text heroFightName;
+    public Text hoverAbilityText;
 
     public AnchorPane anchor;
 
@@ -157,6 +160,7 @@ public class controller {
     public Button blockAbility;
     public Button healAbility;
     public Button butExit;
+    public Button autoAttack;
 
     public VBox invBox1;
     public VBox invBox2;
@@ -180,6 +184,7 @@ public class controller {
     public Pane characterMenu;
     public Pane miniScreen;
     public Pane inspect;
+    public Pane hoverAbility;
 
     public Label errorplayername;
     public Label playernamelabel;
@@ -230,7 +235,10 @@ public class controller {
     private int nrOfLines;
     private int abilityCooldown = 0;
     private int bulwarkDuration;
+    private int burnDuration;
     private int percent;
+    private int tickDamage;
+    private int increasedHp;
 
     private List<Monster> monsterList = new ArrayList<Monster>();
     private List<Gear> lootTable = new ArrayList<Gear>();
@@ -246,11 +254,6 @@ public class controller {
     private Monster wolf;
     private Monster armorKnight;
 
-    private JPanel healthbarHero;
-    private JPanel healthbarMonster;
-    private JProgressBar healthbar1;
-    private JProgressBar healthbar2;
-    private JPanel healthbars;
     public TextFlow combatlog;
 
     public void initialize() throws IOException {
@@ -264,7 +267,7 @@ public class controller {
         succubus = new Monster("Succubus", 10, 40, 30, "images/Dark_Elves/Character6_face2.png",
                 "images/Dark_Elves/Character6_face3.png");
         monsterList.add(succubus);
-        shaman = new Monster("Shaman", 15, 30, 30, "images/Dark_Elves/Character4_face1.png",
+        shaman = new Monster("Shaman", 15, 45, 30, "images/Dark_Elves/Character4_face1.png",
                 "images/Dark_Elves/Character4_face3.png");
         monsterList.add(shaman);
         deathKnight = new Monster("DeathKnight", 20, 50, 30, "images/Dark_Elves/Character1_face2.png",
@@ -330,9 +333,9 @@ public class controller {
 
     // schermen afh van de geselecteerde hero
     public void selectedHero1() {
-        Hero hero1 = new Hero("Zoe", 50, 100, "images/Heroes/PNG/Warriors/Character3_face2.png",
-                "images/Heroes/PNG/Warriors_faces_transperent/Character3_face3.png",
-                "images/Heroes/PNG/Warriors/Character6_face3.png");
+        Hero hero1 = new Hero("Zoe", 40, 100, "images/Heroes/PNG/Warriors/Character3_face2.png",
+                "images/Heroes/PNG/Warriors_faces_transperent/Character3_face2.png",
+                "images/Heroes/PNG/Warriors/Character3_face3.png");
         characterSelection.setVisible(false);
         statScreen.setVisible(true);
         this.setSelectedHero(hero1);
@@ -344,7 +347,7 @@ public class controller {
     }
 
     public void selectedHero2() {
-        Hero hero2 = new Hero("Bob", 30, 130, "images/Heroes/PNG/Warriors/Character6_face4.png",
+        Hero hero2 = new Hero("Bob", 20, 120, "images/Heroes/PNG/Warriors/Character6_face4.png",
                 "images/Heroes/PNG/Warriors_faces_transperent/Character6_face4.png",
                 "images/Heroes/PNG/Warriors/Character6_face3.png");
         characterSelection.setVisible(false);
@@ -358,7 +361,7 @@ public class controller {
     }
 
     public void selectedHero3() {
-        Hero hero3 = new Hero("Gandalf", 70, 60, "images/Heroes/PNG/Warriors/Character2_face1.png",
+        Hero hero3 = new Hero("Gandalf", 50, 80, "images/Heroes/PNG/Warriors/Character2_face1.png",
                 "images/Heroes/PNG/Warriors_faces_transperent/Character2_face1.png",
                 "images/Heroes/PNG/Warriors/Character2_face3.png");
         characterSelection.setVisible(false);
@@ -661,8 +664,12 @@ public class controller {
         targetMonster.seteHitPoints(targetMonster.getHitpoints());
         heroEasy.setImage(new Image(selectedHero.getImage()));
         monsterEasy.setImage(new Image(this.getTargetMonster().getImage()));
-        healthHero.setText(String.valueOf(selectedHero.geteHitPoints()));
-        healthMonster.setText(String.valueOf(this.getTargetMonster().getHitpoints()));
+        monsterFightName.setText(this.targetMonster.getName());
+        heroFightName.setText(this.selectedHero.getName());
+        healthHero.setText(
+                String.valueOf(selectedHero.geteHitPoints() + "/" + String.valueOf(this.selectedHero.getHitpoints())));
+        healthMonster.setText(String.valueOf(
+                this.getTargetMonster().getHitpoints() + "/" + String.valueOf(this.targetMonster.getHitpoints())));
         if (this.selectedHero.getName().equals("Zoe")) {
             burnAbility.setVisible(true);
             healAbility.setDisable(true);
@@ -676,18 +683,6 @@ public class controller {
             burnAbility.setDisable(true);
             blockAbility.setDisable(true);
         }
-        /*
-         * healthbar1 = new JProgressBar(0, this.selectedHero.geteHitPoints());
-         * healthbar2 = new JProgressBar(0, this.targetMonster.geteHitPoints());
-         * healthbar1.setPreferredSize(new Dimension(300, 30));
-         * healthbar2.setPreferredSize(new Dimension(300, 30));
-         * healthbar1.setValue(this.selectedHero.geteHitPoints());
-         * healthbar2.setValue(this.targetMonster.geteHitPoints());
-         * 
-         * 
-         * healthbars.add(healthbar1);
-         * healthbars.add(healthbar2);
-         */
         for (int i = 0; i < lootList.size(); i++) {
             loot.get(i).setImage(null);
         }
@@ -711,19 +706,12 @@ public class controller {
         targetMonster.seteHitPoints(targetMonster.getHitpoints());
         heroEasy.setImage(new Image(selectedHero.getImage()));
         monsterEasy.setImage(new Image(this.getTargetMonster().getImage()));
-        healthHero.setText(String.valueOf(selectedHero.geteHitPoints()));
-        healthMonster.setText(String.valueOf(this.getTargetMonster().getHitpoints()));
-        /*
-         * healthbar1 = new JProgressBar(0, this.selectedHero.geteHitPoints());
-         * healthbar2 = new JProgressBar(0, this.targetMonster.geteHitPoints());
-         * healthbar1.setPreferredSize(new Dimension(300, 30));
-         * healthbar2.setPreferredSize(new Dimension(300, 30));
-         * healthbar1.setValue(this.selectedHero.geteHitPoints());
-         * healthbar2.setValue(this.targetMonster.geteHitPoints());
-         * 
-         * healthbars.add(healthbar1);
-         * healthbars.add(healthbar2);
-         */
+        monsterFightName.setText(this.targetMonster.getName());
+        heroFightName.setText(this.selectedHero.getName());
+        healthHero.setText(
+                String.valueOf(selectedHero.geteHitPoints() + "/" + String.valueOf(this.selectedHero.getHitpoints())));
+        healthMonster.setText(String.valueOf(
+                this.getTargetMonster().getHitpoints() + "/" + String.valueOf(this.targetMonster.getHitpoints())));
         for (int i = 0; i < lootList.size(); i++) {
             loot.get(i).setImage(null);
         }
@@ -747,8 +735,12 @@ public class controller {
         targetMonster.seteHitPoints(targetMonster.getHitpoints());
         heroEasy.setImage(new Image(selectedHero.getImage()));
         monsterEasy.setImage(new Image(this.getTargetMonster().getImage()));
-        healthHero.setText(String.valueOf(selectedHero.geteHitPoints()));
-        healthMonster.setText(String.valueOf(this.getTargetMonster().getHitpoints()));
+        monsterFightName.setText(this.targetMonster.getName());
+        heroFightName.setText(this.selectedHero.getName());
+        healthHero.setText(
+                String.valueOf(selectedHero.geteHitPoints() + "/" + String.valueOf(this.selectedHero.getHitpoints())));
+        healthMonster.setText(String.valueOf(
+                this.getTargetMonster().getHitpoints() + "/" + String.valueOf(this.targetMonster.getHitpoints())));
         for (int i = 0; i < lootList.size(); i++) {
             loot.get(i).setImage(null);
         }
@@ -772,8 +764,12 @@ public class controller {
         targetMonster.seteHitPoints(targetMonster.getHitpoints());
         heroEasy.setImage(new Image(selectedHero.getImage()));
         monsterEasy.setImage(new Image(this.getTargetMonster().getImage()));
-        healthHero.setText(String.valueOf(selectedHero.geteHitPoints()));
-        healthMonster.setText(String.valueOf(this.getTargetMonster().getHitpoints()));
+        monsterFightName.setText(this.targetMonster.getName());
+        heroFightName.setText(this.selectedHero.getName());
+        healthHero.setText(
+                String.valueOf(selectedHero.geteHitPoints() + "/" + String.valueOf(this.selectedHero.getHitpoints())));
+        healthMonster.setText(String.valueOf(
+                this.getTargetMonster().getHitpoints() + "/" + String.valueOf(this.targetMonster.getHitpoints())));
         for (int i = 0; i < lootList.size(); i++) {
             loot.get(i).setImage(null);
         }
@@ -797,8 +793,12 @@ public class controller {
         targetMonster.seteHitPoints(targetMonster.getHitpoints());
         heroEasy.setImage(new Image(selectedHero.getImage()));
         monsterEasy.setImage(new Image(this.getTargetMonster().getImage()));
-        healthHero.setText(String.valueOf(selectedHero.geteHitPoints()));
-        healthMonster.setText(String.valueOf(this.getTargetMonster().getHitpoints()));
+        monsterFightName.setText(this.targetMonster.getName());
+        heroFightName.setText(this.selectedHero.getName());
+        healthHero.setText(
+                String.valueOf(selectedHero.geteHitPoints() + "/" + String.valueOf(this.selectedHero.getHitpoints())));
+        healthMonster.setText(String.valueOf(
+                this.getTargetMonster().getHitpoints() + "/" + String.valueOf(this.targetMonster.getHitpoints())));
         for (int i = 0; i < lootList.size(); i++) {
             loot.get(i).setImage(null);
         }
@@ -822,8 +822,12 @@ public class controller {
         targetMonster.seteHitPoints(targetMonster.getHitpoints());
         heroEasy.setImage(new Image(selectedHero.getImage()));
         monsterEasy.setImage(new Image(this.getTargetMonster().getImage()));
-        healthHero.setText(String.valueOf(selectedHero.geteHitPoints()));
-        healthMonster.setText(String.valueOf(this.getTargetMonster().getHitpoints()));
+        monsterFightName.setText(this.targetMonster.getName());
+        heroFightName.setText(this.selectedHero.getName());
+        healthHero.setText(
+                String.valueOf(selectedHero.geteHitPoints() + "/" + String.valueOf(this.selectedHero.getHitpoints())));
+        healthMonster.setText(String.valueOf(
+                this.getTargetMonster().getHitpoints() + "/" + String.valueOf(this.targetMonster.getHitpoints())));
         for (int i = 0; i < lootList.size(); i++) {
             loot.get(i).setImage(null);
         }
@@ -847,8 +851,12 @@ public class controller {
         targetMonster.seteHitPoints(targetMonster.getHitpoints());
         heroEasy.setImage(new Image(selectedHero.getImage()));
         monsterEasy.setImage(new Image(this.getTargetMonster().getImage()));
-        healthHero.setText(String.valueOf(selectedHero.geteHitPoints()));
-        healthMonster.setText(String.valueOf(this.getTargetMonster().getHitpoints()));
+        monsterFightName.setText(this.targetMonster.getName());
+        heroFightName.setText(this.selectedHero.getName());
+        healthHero.setText(
+                String.valueOf(selectedHero.geteHitPoints() + "/" + String.valueOf(this.selectedHero.getHitpoints())));
+        healthMonster.setText(String.valueOf(
+                this.getTargetMonster().getHitpoints() + "/" + String.valueOf(this.targetMonster.getHitpoints())));
         for (int i = 0; i < lootList.size(); i++) {
             loot.get(i).setImage(null);
         }
@@ -872,8 +880,12 @@ public class controller {
         targetMonster.seteHitPoints(targetMonster.getHitpoints());
         heroEasy.setImage(new Image(selectedHero.getImage()));
         monsterEasy.setImage(new Image(this.getTargetMonster().getImage()));
-        healthHero.setText(String.valueOf(selectedHero.geteHitPoints()));
-        healthMonster.setText(String.valueOf(this.getTargetMonster().getHitpoints()));
+        monsterFightName.setText(this.targetMonster.getName());
+        heroFightName.setText(this.selectedHero.getName());
+        healthHero.setText(
+                String.valueOf(selectedHero.geteHitPoints() + "/" + String.valueOf(this.selectedHero.getHitpoints())));
+        healthMonster.setText(String.valueOf(
+                this.getTargetMonster().getHitpoints() + "/" + String.valueOf(this.targetMonster.getHitpoints())));
         for (int i = 0; i < lootList.size(); i++) {
             loot.get(i).setImage(null);
         }
@@ -916,7 +928,8 @@ public class controller {
                     + this.targetMonster.getDamage() + " hitpoints!\n");
             combatlog.getChildren().add(monsterHit);
             nrOfLines++;
-            healthHero.setText(String.valueOf(this.selectedHero.geteHitPoints()));
+            healthHero.setText(
+                    String.valueOf(this.selectedHero.geteHitPoints() + "/" + this.selectedHero.getHitpoints()));
             translate2.setOnFinished((e) -> {
                 slashEffectOnHero.setVisible(false);
                 monsterEasy.setImage(new Image(this.targetMonster.getImage()));
@@ -945,13 +958,23 @@ public class controller {
             cooldownText.setDisable(true);
             blockAbility.setDisable(false);
         }
-        healthMonster.setText(String.valueOf(this.targetMonster.geteHitPoints()));
+        healthMonster
+                .setText(String.valueOf(this.targetMonster.geteHitPoints() + "/" + this.targetMonster.getHitpoints()));
         if (this.targetMonster.geteHitPoints() > 0) {
             currentHitpointsHero = this.selectedHero.geteHitPoints();
             this.targetMonster.Hit(this.selectedHero);
             bulwarkDuration--;
             if (bulwarkDuration == 0) {
                 this.selectedHero.setProtection(this.selectedHero.getProtection() - percent);
+            }
+            if (burnDuration != 0) {
+                this.targetMonster.seteHitPoints(this.targetMonster.geteHitPoints() - tickDamage);
+                Text burnTick = new Text(
+                        this.selectedHero.getName() + " burned " + this.targetMonster.getName() + " for "
+                                + tickDamage + " hitpoints!\n");
+                combatlog.getChildren().add(burnTick);
+                nrOfLines++;
+                burnDuration--;
             }
             /* Hero hit monster */
             if (currentHitpointsMonster != this.targetMonster.geteHitPoints()) {
@@ -990,8 +1013,41 @@ public class controller {
 
     }
 
-    public void burn() {
+    TranslateTransition translateBurn = new TranslateTransition();
 
+    public void burnEffect() {
+        translateBurn.setNode(burnEffect);
+        burnEffect.setVisible(true);
+        translateBurn.setDuration(Duration.millis(1000));
+        translateBurn.setCycleCount(1);
+        translateBurn.play();
+        translateBurn.setOnFinished((e) -> {
+            burnEffect.setVisible(false);
+        });
+    }
+
+    public void burn() {
+        if (abilityCooldown == 0) {
+            burnEffect();
+            if (nrOfLines >= 12) {
+                combatlog.getChildren().clear();
+                nrOfLines = 0;
+            }
+            abilityCooldown = 4;
+            burnDuration = 2;
+            cooldownText.setVisible(true);
+            cooldownText.setText(String.valueOf(abilityCooldown));
+            tickDamage = (int) (this.targetMonster.getHitpoints() * 0.10);
+            targetMonster.seteHitPoints(this.targetMonster.geteHitPoints() - tickDamage);
+            Text burnText = new Text(
+                    this.selectedHero.getName() + " activated Burn and burned " + this.targetMonster.getName()
+                            + " for 3 rounds!\n");
+            combatlog.getChildren().add(burnText);
+            nrOfLines++;
+            burnAbility.setDisable(true);
+        } else {
+            burnAbility.setDisable(true);
+        }
     }
 
     TranslateTransition translateBulwark = new TranslateTransition();
@@ -1054,7 +1110,7 @@ public class controller {
             cooldownText.setVisible(true);
             cooldownText.setText(String.valueOf(abilityCooldown));
             double percentage = 0.4;
-            int increasedHp = (int) (percentage
+            increasedHp = (int) (percentage
                     * (this.selectedHero.getHitpoints()));
             this.selectedHero.seteHitPoints(this.selectedHero.geteHitPoints() + increasedHp);
             if (this.selectedHero.geteHitPoints() > this.selectedHero.getHitpoints()) {
@@ -1064,7 +1120,8 @@ public class controller {
                     this.selectedHero.getName() + " activated Heal and gained " + increasedHp + " hitpoints!\n");
             combatlog.getChildren().add(healText);
             nrOfLines++;
-            healthHero.setText(String.valueOf(this.selectedHero.geteHitPoints()));
+            healthHero.setText(
+                    String.valueOf(this.selectedHero.geteHitPoints() + "/" + this.selectedHero.getHitpoints()));
             miniHp.setText(String.valueOf(this.selectedHero.geteHitPoints() + "/" + this.selectedHero.getHitpoints()));
             healAbility.setDisable(true);
         } else {
@@ -2023,8 +2080,8 @@ public class controller {
                 selectedHero.seteHitPoints(selectedHero.getHitpoints());
                 miniHp.setText(selectedHero.geteHitPoints() + "/" + selectedHero.getHitpoints());
             }
-            healthHero.setText(String.valueOf(selectedHero.geteHitPoints()));
-            hpHero.setText(String.valueOf(selectedHero.geteHitPoints()));
+            healthHero.setText(String.valueOf(selectedHero.geteHitPoints() + "/" + selectedHero.getHitpoints()));
+            hpHero.setText(String.valueOf(selectedHero.geteHitPoints() + "/" + selectedHero.getHitpoints()));
             potionCount.setText(String.valueOf(potions));
             miniHp.setText(selectedHero.geteHitPoints() + "/" + selectedHero.getHitpoints());
         }
@@ -2044,10 +2101,6 @@ public class controller {
     public void closeCharacterMenu() {
         miniScreen.setVisible(true);
         characterMenu.setVisible(false);
-    }
-
-    public void hoverAb() {
-
     }
 
     public void inspectItem() {
@@ -2200,6 +2253,32 @@ public class controller {
         this.inspectImg.setImage(new Image(
                 (lootList.get(teller))
                         .getImage()));
+    }
+
+    public void inspectAbility() {
+        if (autoAttack.isHover() == true) {
+            hoverAbility.setVisible(true);
+            hoverAbilityText.setText("Auto attacks an enemy based on strength.\nNo cooldown");
+        }
+        if (blockAbility.isHover() == true) {
+            hoverAbility.setVisible(true);
+            hoverAbilityText.setText("Increases " + this.selectedHero.getName()
+                    + "'s protection by 40% for 2 rounds.\nCooldown: 4 rounds");
+        }
+        if (healAbility.isHover() == true) {
+            hoverAbility.setVisible(true);
+            hoverAbilityText.setText(
+                    "Heals " + this.selectedHero.getName() + " for " + increasedHp + "hitpoints.\nCooldown: 4 rounds");
+        }
+        if (burnAbility.isHover() == true) {
+            hoverAbility.setVisible(true);
+            hoverAbilityText.setText(
+                    "Burns an enemy for " + tickDamage + " hitpoints per round for 2 rounds.\nCooldown: 4 rounds");
+        }
+    }
+
+    public void exitHoverAbility() {
+        this.hoverAbility.setVisible(false);
     }
 
     public void exitInspect() {

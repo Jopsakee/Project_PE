@@ -12,7 +12,6 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
@@ -175,10 +174,8 @@
          <children>
             <ImageView fx:id="heroEasy" fitHeight="407.0" fitWidth="246.0" layoutX="305.0" layoutY="407.0" pickOnBounds="true" preserveRatio="true" styleClass="imageViewer" />
             <ImageView fx:id="monsterEasy" fitHeight="410.0" fitWidth="154.0" layoutX="886.0" layoutY="406.0" pickOnBounds="true" preserveRatio="true" styleClass="imageViewer" />
-            <Button fx:id="autoAttack" layoutX="587.0" layoutY="879.0" mnemonicParsing="false" onAction="#autoAttack" prefHeight="55.0" prefWidth="72.0" styleClass="attack1" stylesheets="@stylesheet.css" />
-            <Button fx:id="burnAbility" layoutX="703.0" layoutY="879.0" mnemonicParsing="false" onAction="#burn" prefHeight="55.0" prefWidth="72.0" styleClass="burnAbility" stylesheets="@stylesheet.css" visible="false" />
-            <Rectangle fx:id="healthbarHero" arcHeight="5.0" arcWidth="5.0" fill="#20d700" height="24.0" layoutX="211.0" layoutY="353.0" stroke="BLACK" strokeType="INSIDE" width="294.0" />
-            <Rectangle fx:id="healthbarMonster" arcHeight="5.0" arcWidth="5.0" fill="RED" height="24.0" layoutX="786.0" layoutY="353.0" stroke="BLACK" strokeType="INSIDE" width="294.0" />
+            <Button fx:id="autoAttack" layoutX="587.0" layoutY="879.0" mnemonicParsing="false" onAction="#autoAttack" onMouseEntered="#inspectAbility" onMouseExited="#exitHoverAbility" prefHeight="55.0" prefWidth="72.0" styleClass="attack1" stylesheets="@stylesheet.css" />
+            <Button fx:id="burnAbility" layoutX="703.0" layoutY="879.0" mnemonicParsing="false" onAction="#burn" onMouseEntered="#inspectAbility" onMouseExited="#exitHoverAbility" prefHeight="55.0" prefWidth="72.0" styleClass="burnAbility" stylesheets="@stylesheet.css" visible="false" />
             <Text fx:id="autoattack" fill="RED" layoutX="597.0" layoutY="874.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AA" textAlignment="CENTER" visible="false">
                <font>
                   <Font size="20.0" />
@@ -194,36 +191,36 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text fx:id="healthHero" fill="#fffb00" layoutX="330.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="55.291015625">
+            <Text fx:id="healthHero" fill="#fffb00" layoutX="303.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="109.189453125">
                <font>
                   <Font size="25.0" />
                </font>
             </Text>
-            <Text fx:id="healthMonster" fill="#fffb00" layoutX="905.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="55.291015625">
+            <Text fx:id="healthMonster" fill="#fffb00" layoutX="908.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="109.189453125">
                <font>
                   <Font size="25.0" />
                </font>
             </Text>
-            <ImageView fx:id="slashEffectOnHero" fitHeight="150.0" fitWidth="200.0" layoutX="328.0" layoutY="461.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="slashEffectOnHero" fitHeight="150.0" fitWidth="200.0" layoutX="294.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@images/Backgrounds/explosion.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="slashEffectOnMonster" fitHeight="150.0" fitWidth="200.0" layoutX="885.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="slashEffectOnMonster" fitHeight="150.0" fitWidth="200.0" layoutX="879.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@images/Backgrounds/explosion.png" />
                </image>
             </ImageView>
             <TextFlow fx:id="combatlog" layoutX="905.0" layoutY="8.0" prefHeight="290.0" prefWidth="450.0" styleClass="combatlog" stylesheets="@stylesheet.css" />
             <Button fx:id="butCombatlog" layoutX="1246.0" layoutY="293.0" mnemonicParsing="false" onAction="#combatLog" text="Combatlog" />
-            <Button fx:id="blockAbility" layoutX="703.0" layoutY="879.0" mnemonicParsing="false" onAction="#bulwark" prefHeight="55.0" prefWidth="72.0" styleClass="blockAbility" stylesheets="@stylesheet.css" visible="false" />
-            <Button fx:id="healAbility" layoutX="703.0" layoutY="879.0" mnemonicParsing="false" onAction="#heal" prefHeight="55.0" prefWidth="72.0" styleClass="healAbility" stylesheets="@stylesheet.css" visible="false" />
+            <Button fx:id="blockAbility" layoutX="703.0" layoutY="879.0" mnemonicParsing="false" onAction="#bulwark" onMouseEntered="#inspectAbility" onMouseExited="#exitHoverAbility" prefHeight="55.0" prefWidth="72.0" styleClass="blockAbility" stylesheets="@stylesheet.css" visible="false" />
+            <Button fx:id="healAbility" layoutX="703.0" layoutY="879.0" mnemonicParsing="false" onAction="#heal" onMouseEntered="#inspectAbility" onMouseExited="#exitHoverAbility" prefHeight="55.0" prefWidth="72.0" styleClass="healAbility" stylesheets="@stylesheet.css" visible="false" />
             <ImageView fx:id="bulwarkEffect" fitHeight="150.0" fitWidth="200.0" layoutX="309.0" layoutY="500.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@images/Backgrounds/bulwark.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="burnEffect" fitHeight="150.0" fitWidth="200.0" layoutX="858.0" layoutY="512.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="burnEffect" fitHeight="150.0" fitWidth="200.0" layoutX="867.0" layoutY="500.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@images/Backgrounds/burn.png" />
                </image>
@@ -238,6 +235,25 @@
                   <Font size="20.0" />
                </font>
             </Text>
+            <Text fx:id="heroFightName" fill="#51ff00" layoutX="287.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="141.0">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <Text fx:id="monsterFightName" fill="RED" layoutX="893.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="141.0">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <Pane fx:id="hoverAbility" layoutX="549.0" layoutY="767.0" prefHeight="100.0" prefWidth="268.0" styleClass="backpack" stylesheets="@stylesheet.css" visible="false">
+               <children>
+                  <Text fx:id="hoverAbilityText" fill="#e1ff00" layoutX="20.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="227.5625">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
          </children>
       </Pane>
       <Pane fx:id="lootScreen" prefHeight="946.0" prefWidth="1366.0" styleClass="lootScreen" stylesheets="@stylesheet.css" visible="false">
