@@ -1155,7 +1155,7 @@ public class controller {
             teller = (int) (Math.random() * 3) + 1;
             int index = 0;
             // System.out.println("Teller: " + teller);
-            int chanceOfPotion = (int) (Math.random() * 2);
+            int chanceOfPotion = (int) (Math.random() * 3);
             if (chanceOfPotion == 1) {
                 potionImage.setImage(new Image("images/Backgrounds/potion.png"));
             }

@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="944.0" prefWidth="1363.0" styleClass="anchor" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller">
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="944.0" prefWidth="1363.0" styleClass="anchor" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller">
    <children>
       <Pane fx:id="startScreen" layoutY="-5.0" prefHeight="952.0" prefWidth="1368.0" styleClass="startScreen" stylesheets="@stylesheet.css">
          <children>
@@ -240,7 +240,7 @@
                   <Font size="25.0" />
                </font>
             </Text>
-            <Text fx:id="monsterFightName" fill="RED" layoutX="893.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="141.0">
+            <Text fx:id="monsterFightName" fill="RED" layoutX="882.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="162.0">
                <font>
                   <Font size="25.0" />
                </font>
