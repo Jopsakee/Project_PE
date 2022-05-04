@@ -132,6 +132,24 @@ public class Hero extends Entity {
         this.getHashmap().remove(Anchor.BODY);
     }
 
+    public void equipBoots(Boots boot) {
+        this.getHashmap().remove(Anchor.BOOTS, this.getHashmap().get(Anchor.BOOTS));
+        this.getHashmap().put(Anchor.BOOTS, boot);
+    }
+
+    public void unequipBoots() {
+        this.getHashmap().remove(Anchor.BOOTS);
+    }
+
+    public void equipGloves(Gloves gloves) {
+        this.getHashmap().remove(Anchor.GLOVES, this.getHashmap().get(Anchor.GLOVES));
+        this.getHashmap().put(Anchor.GLOVES, gloves);
+    }
+
+    public void unequipGloves() {
+        this.getHashmap().remove(Anchor.GLOVES);
+    }
+
     public void dropGear(Anchor anchor) {
         this.getHashmap().get(anchor).setHolder(null);
         ;

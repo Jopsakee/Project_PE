@@ -1,3 +1,3 @@
-public enum Anchor{
-	LEFT, RIGHT, BACK, BODY
+public enum Anchor {
+	LEFT, RIGHT, BACK, BODY, BOOTS, GLOVES
 }
