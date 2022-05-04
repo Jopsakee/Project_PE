@@ -1687,10 +1687,10 @@ public class controller {
     public void unequipBoots() {
         backpack.getBackpackContentList().add(selectedHero.getHashmap().get(Anchor.BOOTS));
         selectedHero.unequipBoots();
-        equipmentBody.setImage(null);
+        equipmentBoots.setImage(null);
         armorText.setText(String.valueOf(selectedHero.getProtection()));
         inventoryList.get(backpack.getBackpackContentList().size() - 1).setImage(new Image(
-                (backpack.getBackpackContentList().get(backpack.getBackpackContentList().size() - 1))
+                ((Boots) backpack.getBackpackContentList().get(backpack.getBackpackContentList().size() - 1))
                         .getImage()));
     }
 
@@ -1700,7 +1700,7 @@ public class controller {
         equipmentGloves.setImage(null);
         armorText.setText(String.valueOf(selectedHero.getProtection()));
         inventoryList.get(backpack.getBackpackContentList().size() - 1).setImage(new Image(
-                (backpack.getBackpackContentList().get(backpack.getBackpackContentList().size() - 1))
+                ((Gloves) backpack.getBackpackContentList().get(backpack.getBackpackContentList().size() - 1))
                         .getImage()));
     }
 

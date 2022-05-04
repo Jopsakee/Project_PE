@@ -116,11 +116,32 @@ public class Hero extends Entity {
     }
 
     public int bonusArmor() {
-        if (this.getHashmap().get(Anchor.BODY) == null) {
-            return 0;
+        int armor = 0;
+        if (this.getHashmap().get(Anchor.BODY) == null && this.getHashmap().get(Anchor.BOOTS) == null
+                && this.getHashmap().get(Anchor.GLOVES) == null) {
+            armor = 0;
+        } else if (this.getHashmap().get(Anchor.BOOTS) == null && this.getHashmap().get(Anchor.GLOVES) == null) {
+            armor = ((Armor) this.getHashmap().get(Anchor.BODY)).getActualArmor();
+        } else if (this.getHashmap().get(Anchor.BODY) == null && this.getHashmap().get(Anchor.GLOVES) == null) {
+            armor = ((Boots) this.getHashmap().get(Anchor.BOOTS)).getActualArmor();
+        } else if (this.getHashmap().get(Anchor.BOOTS) == null && this.getHashmap().get(Anchor.BODY) == null) {
+            armor = ((Gloves) this.getHashmap().get(Anchor.GLOVES)).getActualArmor();
+        } else if (this.getHashmap().get(Anchor.BOOTS) == null) {
+            armor = ((Gloves) this.getHashmap().get(Anchor.GLOVES)).getActualArmor()
+                    + ((Armor) this.getHashmap().get(Anchor.BODY)).getActualArmor();
+        } else if (this.getHashmap().get(Anchor.GLOVES) == null) {
+            armor = ((Boots) this.getHashmap().get(Anchor.BOOTS)).getActualArmor()
+                    + ((Armor) this.getHashmap().get(Anchor.BODY)).getActualArmor();
+        } else if (this.getHashmap().get(Anchor.BODY) == null) {
+            armor = ((Boots) this.getHashmap().get(Anchor.BOOTS)).getActualArmor()
+                    + ((Gloves) this.getHashmap().get(Anchor.GLOVES)).getActualArmor();
         } else {
-            return ((Armor) this.getHashmap().get(Anchor.BODY)).getActualArmor();
+            armor = ((Boots) this.getHashmap().get(Anchor.BOOTS)).getActualArmor()
+                    + ((Gloves) this.getHashmap().get(Anchor.GLOVES)).getActualArmor()
+                    + ((Armor) this.getHashmap().get(Anchor.BODY)).getActualArmor();
         }
+
+        return armor;
     }
 
     public void equipArmor(Gear gear) {
