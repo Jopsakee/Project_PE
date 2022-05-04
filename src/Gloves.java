@@ -1,14 +1,14 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Gloves extends Gear {
+public class Gloves extends Armor {
     private static List<Long> idGlovesList = new ArrayList<Long>();
     private final int maxArmor = 100;
     private final int minArmor = 1;
     private int actualArmor;
 
     public Gloves(int weight, int actualArmor, String image) {
-        super(weight, image);
+        super(weight, actualArmor, image);
         if (actualArmor > 0 && actualArmor <= 100) {
             this.actualArmor = actualArmor;
         } else {

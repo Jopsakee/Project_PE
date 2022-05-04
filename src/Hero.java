@@ -85,7 +85,11 @@ public class Hero extends Entity {
     }
 
     public int getProtection() {
-        return protection + this.bonusArmor();
+        return protection;
+    }
+
+    public void setProtection(int protection) {
+        this.protection = protection;
     }
 
     public int getDeathBlowPercentage() {
@@ -115,59 +119,58 @@ public class Hero extends Entity {
         return bonus;
     }
 
-    public int bonusArmor() {
-        int armor = 0;
-        if (this.getHashmap().get(Anchor.BODY) == null && this.getHashmap().get(Anchor.BOOTS) == null
-                && this.getHashmap().get(Anchor.GLOVES) == null) {
-            armor = 0;
-        } else if (this.getHashmap().get(Anchor.BOOTS) == null && this.getHashmap().get(Anchor.GLOVES) == null) {
-            armor = ((Armor) this.getHashmap().get(Anchor.BODY)).getActualArmor();
-        } else if (this.getHashmap().get(Anchor.BODY) == null && this.getHashmap().get(Anchor.GLOVES) == null) {
-            armor = ((Boots) this.getHashmap().get(Anchor.BOOTS)).getActualArmor();
-        } else if (this.getHashmap().get(Anchor.BOOTS) == null && this.getHashmap().get(Anchor.BODY) == null) {
-            armor = ((Gloves) this.getHashmap().get(Anchor.GLOVES)).getActualArmor();
-        } else if (this.getHashmap().get(Anchor.BOOTS) == null) {
-            armor = ((Gloves) this.getHashmap().get(Anchor.GLOVES)).getActualArmor()
-                    + ((Armor) this.getHashmap().get(Anchor.BODY)).getActualArmor();
-        } else if (this.getHashmap().get(Anchor.GLOVES) == null) {
-            armor = ((Boots) this.getHashmap().get(Anchor.BOOTS)).getActualArmor()
-                    + ((Armor) this.getHashmap().get(Anchor.BODY)).getActualArmor();
-        } else if (this.getHashmap().get(Anchor.BODY) == null) {
-            armor = ((Boots) this.getHashmap().get(Anchor.BOOTS)).getActualArmor()
-                    + ((Gloves) this.getHashmap().get(Anchor.GLOVES)).getActualArmor();
-        } else {
-            armor = ((Boots) this.getHashmap().get(Anchor.BOOTS)).getActualArmor()
-                    + ((Gloves) this.getHashmap().get(Anchor.GLOVES)).getActualArmor()
-                    + ((Armor) this.getHashmap().get(Anchor.BODY)).getActualArmor();
-        }
-
-        return armor;
+    public void equipHelmet(Helmet helmet) {
+        this.getHashmap().remove(Anchor.HELMET, this.getHashmap().get(Anchor.HELMET));
+        this.getHashmap().put(Anchor.HELMET, helmet);
+        this.setProtection(this.getProtection() + helmet.getActualArmor());
     }
 
-    public void equipArmor(Gear gear) {
+    public void unequipHelmet(Helmet helmet) {
+        this.setProtection(this.getProtection() - helmet.getActualArmor());
+        this.getHashmap().remove(Anchor.HELMET);
+    }
+
+    public void equipArmor(Body body) {
         this.getHashmap().remove(Anchor.BODY, this.getHashmap().get(Anchor.BODY));
-        this.getHashmap().put(Anchor.BODY, gear);
+        this.getHashmap().put(Anchor.BODY, body);
+        this.setProtection(this.getProtection() + body.getActualArmor());
     }
 
-    public void unequipArmor() {
+    public void unequipArmor(Body body) {
+        this.setProtection(this.getProtection() - body.getActualArmor());
         this.getHashmap().remove(Anchor.BODY);
     }
 
-    public void equipBoots(Boots boot) {
-        this.getHashmap().remove(Anchor.BOOTS, this.getHashmap().get(Anchor.BOOTS));
-        this.getHashmap().put(Anchor.BOOTS, boot);
+    public void equipLeggings(Leggings leggings) {
+        this.getHashmap().remove(Anchor.LEGGINGS, this.getHashmap().get(Anchor.LEGGINGS));
+        this.getHashmap().put(Anchor.LEGGINGS, leggings);
+        this.setProtection(this.getProtection() + leggings.getActualArmor());
     }
 
-    public void unequipBoots() {
+    public void unequipLeggings(Leggings leggings) {
+        this.setProtection(this.getProtection() - leggings.getActualArmor());
+        this.getHashmap().remove(Anchor.LEGGINGS);
+    }
+
+    public void equipBoots(Boots boots) {
+        this.getHashmap().remove(Anchor.BOOTS, this.getHashmap().get(Anchor.BOOTS));
+        this.getHashmap().put(Anchor.BOOTS, boots);
+        this.setProtection(this.getProtection() + boots.getActualArmor());
+    }
+
+    public void unequipBoots(Boots boots) {
+        this.setProtection(this.getProtection() - boots.getActualArmor());
         this.getHashmap().remove(Anchor.BOOTS);
     }
 
     public void equipGloves(Gloves gloves) {
         this.getHashmap().remove(Anchor.GLOVES, this.getHashmap().get(Anchor.GLOVES));
         this.getHashmap().put(Anchor.GLOVES, gloves);
+        this.setProtection(this.getProtection() + gloves.getActualArmor());
     }
 
-    public void unequipGloves() {
+    public void unequipGloves(Gloves gloves) {
+        this.setProtection(this.getProtection() - gloves.getActualArmor());
         this.getHashmap().remove(Anchor.GLOVES);
     }
 

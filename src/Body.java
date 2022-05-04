@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Boots extends Armor {
-    private static List<Long> idBootsList = new ArrayList<Long>();
+public class Body extends Armor {
+    private static List<Long> idBodyList = new ArrayList<Long>();
     private final int maxArmor = 100;
     private final int minArmor = 1;
     private int actualArmor;
 
-    public Boots(int weight, int actualArmor, String image) {
+    public Body(int weight, int actualArmor, String image) {
         super(weight, actualArmor, image);
         if (actualArmor > 0 && actualArmor <= 100) {
             this.actualArmor = actualArmor;
@@ -21,7 +21,7 @@ public class Boots extends Armor {
         while (this.isPrime(getal) == false) {
             getal = (long) (Math.random() * 10000000L);
         }
-        idBootsList.add(getal);
+        idBodyList.add(getal);
         return getal;
     }
 

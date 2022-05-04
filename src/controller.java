@@ -97,6 +97,8 @@ public class controller {
     public ImageView equipmentBody;
     public ImageView equipmentGloves;
     public ImageView equipmentBoots;
+    public ImageView equipmentLeggings;
+    public ImageView equipmentHelmet;
     public ImageView inspectImg;
     public ImageView slashEffectOnMonster;
     public ImageView slashEffectOnHero;
@@ -250,10 +252,10 @@ public class controller {
         monsterList.add(shaman);
         deathKnight = new Monster("DeathKnight", 20, 50, 30, "images/Dark_Elves/Character1_face3.png");
         monsterList.add(deathKnight);
-        assassin = new Monster("Assassin", 25, 30, 50, "images/Dark_Elves/Character8_face4.png");
-        monsterList.add(assassin);
         witch = new Monster("Witch", 30, 50, 35, "images/Dark_Elves/Character2_face3.png");
         monsterList.add(witch);
+        assassin = new Monster("Assassin", 25, 30, 50, "images/Dark_Elves/Character8_face4.png");
+        monsterList.add(assassin);
         deadPrince = new Monster("DeadPrince", 35, 60, 20, "images/Dark_Elves/Character3_face1.png");
         monsterList.add(deadPrince);
         wolf = new Monster("Wolf", 40, 70, 40, "images/Dark_Elves/Character5_face2.png");
@@ -262,35 +264,35 @@ public class controller {
         monsterList.add(armorKnight);
 
         /* Armor initialiseren */
-        helmet = new Armor(2, 5, "images/Armor/PNG/helmet.png");
+        helmet = new Helmet(2, 5, "images/Armor/PNG/helmet.png");
         lootTable.add(helmet);
-        carapace = new Armor(7, 10, "images/Armor/PNG/carapace.png");
+        carapace = new Body(7, 10, "images/Armor/PNG/carapace.png");
         lootTable.add(carapace);
-        leggings = new Armor(5, 8, "images/Armor/PNG/leggings.png");
+        leggings = new Leggings(5, 8, "images/Armor/PNG/leggings.png");
         lootTable.add(leggings);
         gloves = new Gloves(2, 3, "images/Armor/PNG/gloves.png");
         lootTable.add(gloves);
         boots = new Boots(2, 2, "images/Armor/PNG/boots.png");
         lootTable.add(boots);
-        upgradedhelmet = new Armor(2, 8, "images/Armor/PNG/upgradedhelmet.png");
+        upgradedhelmet = new Helmet(2, 8, "images/Armor/PNG/upgradedhelmet.png");
         lootTable.add(upgradedhelmet);
-        upgradedcarapace = new Armor(8, 15, "images/Armor/PNG/upgradedcarapace.png");
+        upgradedcarapace = new Body(8, 15, "images/Armor/PNG/upgradedcarapace.png");
         lootTable.add(upgradedcarapace);
-        upgradedleggings = new Armor(5, 12, "images/Armor/PNG/upgradedleggings.png");
+        upgradedleggings = new Leggings(5, 12, "images/Armor/PNG/upgradedleggings.png");
         lootTable.add(upgradedleggings);
         upgradedgloves = new Gloves(2, 5, "images/Armor/PNG/upgradedgloves.png");
         lootTable.add(upgradedgloves);
         upgradedboots = new Boots(2, 4, "images/Armor/PNG/upgradedboots.png");
         lootTable.add(upgradedboots);
-        darkcloak = new Armor(3, 7, "images/Armor/PNG/darkcloak.png");
+        darkcloak = new Body(3, 7, "images/Armor/PNG/darkcloak.png");
         lootTable.add(darkcloak);
-        druidrobe = new Armor(4, 9, "images/Armor/PNG/druidrobe.png");
+        druidrobe = new Body(4, 9, "images/Armor/PNG/druidrobe.png");
         lootTable.add(druidrobe);
-        firerobe = new Armor(4, 8, "images/Armor/PNG/firerobe.png");
+        firerobe = new Body(4, 8, "images/Armor/PNG/firerobe.png");
         lootTable.add(firerobe);
-        necrorobe = new Armor(5, 11, "images/Armor/PNG/necrorobe.png");
+        necrorobe = new Body(5, 11, "images/Armor/PNG/necrorobe.png");
         lootTable.add(necrorobe);
-        shamanrobe = new Armor(6, 10, "images/Armor/PNG/shamanrobe.png");
+        shamanrobe = new Body(6, 10, "images/Armor/PNG/shamanrobe.png");
         lootTable.add(shamanrobe);
 
         /* Weapons initialiseren */
@@ -1267,11 +1269,11 @@ public class controller {
     /* equip item vbox */
 
     public void equipItem1() {
-        if (backpack.getBackpackContentList().get(0) instanceof Armor) {
+        if (backpack.getBackpackContentList().get(0) instanceof Body) {
             if (selectedHero.getHashmap().get(Anchor.BODY) != null) {
                 if (backpack.getBackpackContentList().size() != 9) {
                     backpack.getBackpackContentList().add(selectedHero.getHashmap().get(Anchor.BODY));
-                    selectedHero.equipArmor(backpack.getBackpackContentList().get(0));
+                    selectedHero.equipArmor((Body) backpack.getBackpackContentList().get(0));
                     deleteItem1();
                     equipmentBody.setImage(new Image(selectedHero.getHashmap().get(Anchor.BODY).getImage()));
                     inventoryList.get(backpack.getBackpackContentList().size() - 1).setImage(new Image(
@@ -1279,7 +1281,7 @@ public class controller {
                                     .getImage()));
                 }
             } else {
-                selectedHero.equipArmor(backpack.getBackpackContentList().get(0));
+                selectedHero.equipArmor((Body) backpack.getBackpackContentList().get(0));
                 deleteItem1();
                 equipmentBody.setImage(new Image(selectedHero.getHashmap().get(Anchor.BODY).getImage()));
             }
@@ -1306,15 +1308,27 @@ public class controller {
                 deleteItem1();
                 equipmentGloves.setImage(new Image(selectedHero.getHashmap().get(Anchor.GLOVES).getImage()));
             }
+        } else if (backpack.getBackpackContentList().get(0) instanceof Helmet) {
+            if (selectedHero.getHashmap().get(Anchor.HELMET) == null) {
+                selectedHero.equipHelmet((Helmet) backpack.getBackpackContentList().get(0));
+                deleteItem1();
+                equipmentHelmet.setImage(new Image(selectedHero.getHashmap().get(Anchor.HELMET).getImage()));
+            }
+        } else if (backpack.getBackpackContentList().get(0) instanceof Leggings) {
+            if (selectedHero.getHashmap().get(Anchor.LEGGINGS) == null) {
+                selectedHero.equipLeggings((Leggings) backpack.getBackpackContentList().get(0));
+                deleteItem1();
+                equipmentLeggings.setImage(new Image(selectedHero.getHashmap().get(Anchor.LEGGINGS).getImage()));
+            }
         }
     }
 
     public void equipItem2() {
-        if (backpack.getBackpackContentList().get(1) instanceof Armor) {
+        if (backpack.getBackpackContentList().get(1) instanceof Body) {
             if (selectedHero.getHashmap().get(Anchor.BODY) != null) {
                 if (backpack.getBackpackContentList().size() != 9) {
                     backpack.getBackpackContentList().add(selectedHero.getHashmap().get(Anchor.BODY));
-                    selectedHero.equipArmor(backpack.getBackpackContentList().get(1));
+                    selectedHero.equipArmor((Body) backpack.getBackpackContentList().get(1));
                     deleteItem2();
                     equipmentBody.setImage(new Image(selectedHero.getHashmap().get(Anchor.BODY).getImage()));
                     inventoryList.get(backpack.getBackpackContentList().size() - 1).setImage(new Image(
@@ -1322,7 +1336,7 @@ public class controller {
                                     .getImage()));
                 }
             } else {
-                selectedHero.equipArmor(backpack.getBackpackContentList().get(1));
+                selectedHero.equipArmor((Body) backpack.getBackpackContentList().get(1));
                 deleteItem2();
                 equipmentBody.setImage(new Image(selectedHero.getHashmap().get(Anchor.BODY).getImage()));
             }
@@ -1349,15 +1363,27 @@ public class controller {
                 deleteItem2();
                 equipmentGloves.setImage(new Image(selectedHero.getHashmap().get(Anchor.GLOVES).getImage()));
             }
+        } else if (backpack.getBackpackContentList().get(1) instanceof Helmet) {
+            if (selectedHero.getHashmap().get(Anchor.HELMET) == null) {
+                selectedHero.equipHelmet((Helmet) backpack.getBackpackContentList().get(1));
+                deleteItem2();
+                equipmentHelmet.setImage(new Image(selectedHero.getHashmap().get(Anchor.HELMET).getImage()));
+            }
+        } else if (backpack.getBackpackContentList().get(1) instanceof Leggings) {
+            if (selectedHero.getHashmap().get(Anchor.LEGGINGS) == null) {
+                selectedHero.equipLeggings((Leggings) backpack.getBackpackContentList().get(1));
+                deleteItem2();
+                equipmentLeggings.setImage(new Image(selectedHero.getHashmap().get(Anchor.LEGGINGS).getImage()));
+            }
         }
     }
 
     public void equipItem3() {
-        if (backpack.getBackpackContentList().get(2) instanceof Armor) {
+        if (backpack.getBackpackContentList().get(2) instanceof Body) {
             if (selectedHero.getHashmap().get(Anchor.BODY) != null) {
                 if (backpack.getBackpackContentList().size() != 9) {
                     backpack.getBackpackContentList().add(selectedHero.getHashmap().get(Anchor.BODY));
-                    selectedHero.equipArmor(backpack.getBackpackContentList().get(2));
+                    selectedHero.equipArmor((Body) backpack.getBackpackContentList().get(2));
                     deleteItem3();
                     equipmentBody.setImage(new Image(selectedHero.getHashmap().get(Anchor.BODY).getImage()));
                     inventoryList.get(backpack.getBackpackContentList().size() - 1).setImage(new Image(
@@ -1365,7 +1391,7 @@ public class controller {
                                     .getImage()));
                 }
             } else {
-                selectedHero.equipArmor(backpack.getBackpackContentList().get(2));
+                selectedHero.equipArmor((Body) backpack.getBackpackContentList().get(2));
                 deleteItem3();
                 equipmentBody.setImage(new Image(selectedHero.getHashmap().get(Anchor.BODY).getImage()));
             }
@@ -1392,15 +1418,27 @@ public class controller {
                 deleteItem3();
                 equipmentGloves.setImage(new Image(selectedHero.getHashmap().get(Anchor.GLOVES).getImage()));
             }
+        } else if (backpack.getBackpackContentList().get(2) instanceof Helmet) {
+            if (selectedHero.getHashmap().get(Anchor.HELMET) == null) {
+                selectedHero.equipHelmet((Helmet) backpack.getBackpackContentList().get(2));
+                deleteItem3();
+                equipmentHelmet.setImage(new Image(selectedHero.getHashmap().get(Anchor.HELMET).getImage()));
+            }
+        } else if (backpack.getBackpackContentList().get(2) instanceof Leggings) {
+            if (selectedHero.getHashmap().get(Anchor.LEGGINGS) == null) {
+                selectedHero.equipLeggings((Leggings) backpack.getBackpackContentList().get(2));
+                deleteItem3();
+                equipmentLeggings.setImage(new Image(selectedHero.getHashmap().get(Anchor.LEGGINGS).getImage()));
+            }
         }
     }
 
     public void equipItem4() {
-        if (backpack.getBackpackContentList().get(3) instanceof Armor) {
+        if (backpack.getBackpackContentList().get(3) instanceof Body) {
             if (selectedHero.getHashmap().get(Anchor.BODY) != null) {
                 if (backpack.getBackpackContentList().size() != 9) {
                     backpack.getBackpackContentList().add(selectedHero.getHashmap().get(Anchor.BODY));
-                    selectedHero.equipArmor(backpack.getBackpackContentList().get(3));
+                    selectedHero.equipArmor((Body) backpack.getBackpackContentList().get(3));
                     deleteItem4();
                     equipmentBody.setImage(new Image(selectedHero.getHashmap().get(Anchor.BODY).getImage()));
                     inventoryList.get(backpack.getBackpackContentList().size() - 1).setImage(new Image(
@@ -1408,7 +1446,7 @@ public class controller {
                                     .getImage()));
                 }
             } else {
-                selectedHero.equipArmor(backpack.getBackpackContentList().get(3));
+                selectedHero.equipArmor((Body) backpack.getBackpackContentList().get(3));
                 deleteItem4();
                 equipmentBody.setImage(new Image(selectedHero.getHashmap().get(Anchor.BODY).getImage()));
             }
@@ -1435,15 +1473,27 @@ public class controller {
                 deleteItem4();
                 equipmentGloves.setImage(new Image(selectedHero.getHashmap().get(Anchor.GLOVES).getImage()));
             }
+        } else if (backpack.getBackpackContentList().get(3) instanceof Helmet) {
+            if (selectedHero.getHashmap().get(Anchor.HELMET) == null) {
+                selectedHero.equipHelmet((Helmet) backpack.getBackpackContentList().get(3));
+                deleteItem4();
+                equipmentHelmet.setImage(new Image(selectedHero.getHashmap().get(Anchor.HELMET).getImage()));
+            }
+        } else if (backpack.getBackpackContentList().get(3) instanceof Leggings) {
+            if (selectedHero.getHashmap().get(Anchor.LEGGINGS) == null) {
+                selectedHero.equipLeggings((Leggings) backpack.getBackpackContentList().get(3));
+                deleteItem4();
+                equipmentLeggings.setImage(new Image(selectedHero.getHashmap().get(Anchor.LEGGINGS).getImage()));
+            }
         }
     }
 
     public void equipItem5() {
-        if (backpack.getBackpackContentList().get(4) instanceof Armor) {
+        if (backpack.getBackpackContentList().get(4) instanceof Body) {
             if (selectedHero.getHashmap().get(Anchor.BODY) != null) {
                 if (backpack.getBackpackContentList().size() != 9) {
                     backpack.getBackpackContentList().add(selectedHero.getHashmap().get(Anchor.BODY));
-                    selectedHero.equipArmor(backpack.getBackpackContentList().get(4));
+                    selectedHero.equipArmor((Body) backpack.getBackpackContentList().get(4));
                     deleteItem5();
                     equipmentBody.setImage(new Image(selectedHero.getHashmap().get(Anchor.BODY).getImage()));
                     inventoryList.get(backpack.getBackpackContentList().size() - 1).setImage(new Image(
@@ -1451,7 +1501,7 @@ public class controller {
                                     .getImage()));
                 }
             } else {
-                selectedHero.equipArmor(backpack.getBackpackContentList().get(4));
+                selectedHero.equipArmor((Body) backpack.getBackpackContentList().get(4));
                 deleteItem5();
                 equipmentBody.setImage(new Image(selectedHero.getHashmap().get(Anchor.BODY).getImage()));
             }
@@ -1466,27 +1516,39 @@ public class controller {
                 equipmentRight.setImage(new Image(selectedHero.getHashmap().get(Anchor.RIGHT).getImage()));
 
             }
-        } else if (backpack.getBackpackContentList().get(0) instanceof Boots) {
+        } else if (backpack.getBackpackContentList().get(4) instanceof Boots) {
             if (selectedHero.getHashmap().get(Anchor.BOOTS) == null) {
                 selectedHero.equipBoots((Boots) backpack.getBackpackContentList().get(4));
                 deleteItem5();
                 equipmentBoots.setImage(new Image(selectedHero.getHashmap().get(Anchor.BOOTS).getImage()));
             }
-        } else if (backpack.getBackpackContentList().get(0) instanceof Gloves) {
+        } else if (backpack.getBackpackContentList().get(4) instanceof Gloves) {
             if (selectedHero.getHashmap().get(Anchor.GLOVES) == null) {
                 selectedHero.equipGloves((Gloves) backpack.getBackpackContentList().get(4));
                 deleteItem5();
                 equipmentGloves.setImage(new Image(selectedHero.getHashmap().get(Anchor.GLOVES).getImage()));
             }
+        } else if (backpack.getBackpackContentList().get(4) instanceof Helmet) {
+            if (selectedHero.getHashmap().get(Anchor.HELMET) == null) {
+                selectedHero.equipHelmet((Helmet) backpack.getBackpackContentList().get(4));
+                deleteItem5();
+                equipmentHelmet.setImage(new Image(selectedHero.getHashmap().get(Anchor.HELMET).getImage()));
+            }
+        } else if (backpack.getBackpackContentList().get(4) instanceof Leggings) {
+            if (selectedHero.getHashmap().get(Anchor.LEGGINGS) == null) {
+                selectedHero.equipLeggings((Leggings) backpack.getBackpackContentList().get(4));
+                deleteItem5();
+                equipmentLeggings.setImage(new Image(selectedHero.getHashmap().get(Anchor.LEGGINGS).getImage()));
+            }
         }
     }
 
     public void equipItem6() {
-        if (backpack.getBackpackContentList().get(5) instanceof Armor) {
+        if (backpack.getBackpackContentList().get(5) instanceof Body) {
             if (selectedHero.getHashmap().get(Anchor.BODY) != null) {
                 if (backpack.getBackpackContentList().size() != 9) {
                     backpack.getBackpackContentList().add(selectedHero.getHashmap().get(Anchor.BODY));
-                    selectedHero.equipArmor(backpack.getBackpackContentList().get(5));
+                    selectedHero.equipArmor((Body) backpack.getBackpackContentList().get(5));
                     deleteItem6();
                     equipmentBody.setImage(new Image(selectedHero.getHashmap().get(Anchor.BODY).getImage()));
                     inventoryList.get(backpack.getBackpackContentList().size() - 1).setImage(new Image(
@@ -1494,7 +1556,7 @@ public class controller {
                                     .getImage()));
                 }
             } else {
-                selectedHero.equipArmor(backpack.getBackpackContentList().get(5));
+                selectedHero.equipArmor((Body) backpack.getBackpackContentList().get(5));
                 deleteItem6();
                 equipmentBody.setImage(new Image(selectedHero.getHashmap().get(Anchor.BODY).getImage()));
             }
@@ -1521,15 +1583,27 @@ public class controller {
                 deleteItem6();
                 equipmentGloves.setImage(new Image(selectedHero.getHashmap().get(Anchor.GLOVES).getImage()));
             }
+        } else if (backpack.getBackpackContentList().get(5) instanceof Helmet) {
+            if (selectedHero.getHashmap().get(Anchor.HELMET) == null) {
+                selectedHero.equipHelmet((Helmet) backpack.getBackpackContentList().get(5));
+                deleteItem6();
+                equipmentHelmet.setImage(new Image(selectedHero.getHashmap().get(Anchor.HELMET).getImage()));
+            }
+        } else if (backpack.getBackpackContentList().get(5) instanceof Leggings) {
+            if (selectedHero.getHashmap().get(Anchor.LEGGINGS) == null) {
+                selectedHero.equipLeggings((Leggings) backpack.getBackpackContentList().get(5));
+                deleteItem6();
+                equipmentLeggings.setImage(new Image(selectedHero.getHashmap().get(Anchor.LEGGINGS).getImage()));
+            }
         }
     }
 
     public void equipItem7() {
-        if (backpack.getBackpackContentList().get(6) instanceof Armor) {
+        if (backpack.getBackpackContentList().get(6) instanceof Body) {
             if (selectedHero.getHashmap().get(Anchor.BODY) != null) {
                 if (backpack.getBackpackContentList().size() != 9) {
                     backpack.getBackpackContentList().add(selectedHero.getHashmap().get(Anchor.BODY));
-                    selectedHero.equipArmor(backpack.getBackpackContentList().get(6));
+                    selectedHero.equipArmor((Body) backpack.getBackpackContentList().get(6));
                     deleteItem7();
                     equipmentBody.setImage(new Image(selectedHero.getHashmap().get(Anchor.BODY).getImage()));
                     inventoryList.get(backpack.getBackpackContentList().size() - 1).setImage(new Image(
@@ -1537,7 +1611,7 @@ public class controller {
                                     .getImage()));
                 }
             } else {
-                selectedHero.equipArmor(backpack.getBackpackContentList().get(6));
+                selectedHero.equipArmor((Body) backpack.getBackpackContentList().get(6));
                 deleteItem7();
                 equipmentBody.setImage(new Image(selectedHero.getHashmap().get(Anchor.BODY).getImage()));
             }
@@ -1564,15 +1638,27 @@ public class controller {
                 deleteItem7();
                 equipmentGloves.setImage(new Image(selectedHero.getHashmap().get(Anchor.GLOVES).getImage()));
             }
+        } else if (backpack.getBackpackContentList().get(6) instanceof Helmet) {
+            if (selectedHero.getHashmap().get(Anchor.HELMET) == null) {
+                selectedHero.equipHelmet((Helmet) backpack.getBackpackContentList().get(6));
+                deleteItem7();
+                equipmentHelmet.setImage(new Image(selectedHero.getHashmap().get(Anchor.HELMET).getImage()));
+            }
+        } else if (backpack.getBackpackContentList().get(6) instanceof Leggings) {
+            if (selectedHero.getHashmap().get(Anchor.LEGGINGS) == null) {
+                selectedHero.equipLeggings((Leggings) backpack.getBackpackContentList().get(6));
+                deleteItem7();
+                equipmentLeggings.setImage(new Image(selectedHero.getHashmap().get(Anchor.LEGGINGS).getImage()));
+            }
         }
     }
 
     public void equipItem8() {
-        if (backpack.getBackpackContentList().get(7) instanceof Armor) {
+        if (backpack.getBackpackContentList().get(7) instanceof Body) {
             if (selectedHero.getHashmap().get(Anchor.BODY) != null) {
                 if (backpack.getBackpackContentList().size() != 9) {
                     backpack.getBackpackContentList().add(selectedHero.getHashmap().get(Anchor.BODY));
-                    selectedHero.equipArmor(backpack.getBackpackContentList().get(7));
+                    selectedHero.equipArmor((Body) backpack.getBackpackContentList().get(7));
                     deleteItem8();
                     equipmentBody.setImage(new Image(selectedHero.getHashmap().get(Anchor.BODY).getImage()));
                     inventoryList.get(backpack.getBackpackContentList().size() - 1).setImage(new Image(
@@ -1580,7 +1666,7 @@ public class controller {
                                     .getImage()));
                 }
             } else {
-                selectedHero.equipArmor(backpack.getBackpackContentList().get(7));
+                selectedHero.equipArmor((Body) backpack.getBackpackContentList().get(7));
                 deleteItem8();
                 equipmentBody.setImage(new Image(selectedHero.getHashmap().get(Anchor.BODY).getImage()));
             }
@@ -1607,15 +1693,27 @@ public class controller {
                 deleteItem8();
                 equipmentGloves.setImage(new Image(selectedHero.getHashmap().get(Anchor.GLOVES).getImage()));
             }
+        } else if (backpack.getBackpackContentList().get(7) instanceof Helmet) {
+            if (selectedHero.getHashmap().get(Anchor.HELMET) == null) {
+                selectedHero.equipHelmet((Helmet) backpack.getBackpackContentList().get(7));
+                deleteItem8();
+                equipmentHelmet.setImage(new Image(selectedHero.getHashmap().get(Anchor.HELMET).getImage()));
+            }
+        } else if (backpack.getBackpackContentList().get(7) instanceof Leggings) {
+            if (selectedHero.getHashmap().get(Anchor.LEGGINGS) == null) {
+                selectedHero.equipLeggings((Leggings) backpack.getBackpackContentList().get(7));
+                deleteItem8();
+                equipmentLeggings.setImage(new Image(selectedHero.getHashmap().get(Anchor.LEGGINGS).getImage()));
+            }
         }
     }
 
     public void equipItem9() {
-        if (backpack.getBackpackContentList().get(8) instanceof Armor) {
+        if (backpack.getBackpackContentList().get(8) instanceof Body) {
             if (selectedHero.getHashmap().get(Anchor.BODY) != null) {
                 if (backpack.getBackpackContentList().size() != 9) {
                     backpack.getBackpackContentList().add(selectedHero.getHashmap().get(Anchor.BODY));
-                    selectedHero.equipArmor(backpack.getBackpackContentList().get(8));
+                    selectedHero.equipArmor((Body) backpack.getBackpackContentList().get(8));
                     deleteItem9();
                     equipmentBody.setImage(new Image(selectedHero.getHashmap().get(Anchor.BODY).getImage()));
                     inventoryList.get(backpack.getBackpackContentList().size() - 1).setImage(new Image(
@@ -1623,7 +1721,7 @@ public class controller {
                                     .getImage()));
                 }
             } else {
-                selectedHero.equipArmor(backpack.getBackpackContentList().get(8));
+                selectedHero.equipArmor((Body) backpack.getBackpackContentList().get(8));
                 deleteItem9();
                 equipmentBody.setImage(new Image(selectedHero.getHashmap().get(Anchor.BODY).getImage()));
             }
@@ -1649,6 +1747,18 @@ public class controller {
                 selectedHero.equipGloves((Gloves) backpack.getBackpackContentList().get(8));
                 deleteItem9();
                 equipmentGloves.setImage(new Image(selectedHero.getHashmap().get(Anchor.GLOVES).getImage()));
+            }
+        } else if (backpack.getBackpackContentList().get(8) instanceof Helmet) {
+            if (selectedHero.getHashmap().get(Anchor.HELMET) == null) {
+                selectedHero.equipHelmet((Helmet) backpack.getBackpackContentList().get(8));
+                deleteItem9();
+                equipmentHelmet.setImage(new Image(selectedHero.getHashmap().get(Anchor.HELMET).getImage()));
+            }
+        } else if (backpack.getBackpackContentList().get(8) instanceof Leggings) {
+            if (selectedHero.getHashmap().get(Anchor.LEGGINGS) == null) {
+                selectedHero.equipLeggings((Leggings) backpack.getBackpackContentList().get(8));
+                deleteItem9();
+                equipmentLeggings.setImage(new Image(selectedHero.getHashmap().get(Anchor.LEGGINGS).getImage()));
             }
         }
     }
@@ -1676,17 +1786,17 @@ public class controller {
 
     public void unequipBody() {
         backpack.getBackpackContentList().add(selectedHero.getHashmap().get(Anchor.BODY));
-        selectedHero.unequipArmor();
+        selectedHero.unequipArmor((Body) selectedHero.getHashmap().get(Anchor.BODY));
         equipmentBody.setImage(null);
         armorText.setText(String.valueOf(selectedHero.getProtection()));
         inventoryList.get(backpack.getBackpackContentList().size() - 1).setImage(new Image(
-                (backpack.getBackpackContentList().get(backpack.getBackpackContentList().size() - 1))
+                ((Body) backpack.getBackpackContentList().get(backpack.getBackpackContentList().size() - 1))
                         .getImage()));
     }
 
     public void unequipBoots() {
         backpack.getBackpackContentList().add(selectedHero.getHashmap().get(Anchor.BOOTS));
-        selectedHero.unequipBoots();
+        selectedHero.unequipBoots((Boots) selectedHero.getHashmap().get(Anchor.BOOTS));
         equipmentBoots.setImage(null);
         armorText.setText(String.valueOf(selectedHero.getProtection()));
         inventoryList.get(backpack.getBackpackContentList().size() - 1).setImage(new Image(
@@ -1696,11 +1806,31 @@ public class controller {
 
     public void unequipGloves() {
         backpack.getBackpackContentList().add(selectedHero.getHashmap().get(Anchor.GLOVES));
-        selectedHero.unequipGloves();
+        selectedHero.unequipGloves((Gloves) selectedHero.getHashmap().get(Anchor.GLOVES));
         equipmentGloves.setImage(null);
         armorText.setText(String.valueOf(selectedHero.getProtection()));
         inventoryList.get(backpack.getBackpackContentList().size() - 1).setImage(new Image(
                 ((Gloves) backpack.getBackpackContentList().get(backpack.getBackpackContentList().size() - 1))
+                        .getImage()));
+    }
+
+    public void unequipLeggings() {
+        backpack.getBackpackContentList().add(selectedHero.getHashmap().get(Anchor.LEGGINGS));
+        selectedHero.unequipLeggings((Leggings) selectedHero.getHashmap().get(Anchor.LEGGINGS));
+        equipmentLeggings.setImage(null);
+        armorText.setText(String.valueOf(selectedHero.getProtection()));
+        inventoryList.get(backpack.getBackpackContentList().size() - 1).setImage(new Image(
+                ((Leggings) backpack.getBackpackContentList().get(backpack.getBackpackContentList().size() - 1))
+                        .getImage()));
+    }
+
+    public void unequipHelmet() {
+        backpack.getBackpackContentList().add(selectedHero.getHashmap().get(Anchor.HELMET));
+        selectedHero.unequipHelmet((Helmet) selectedHero.getHashmap().get(Anchor.HELMET));
+        equipmentHelmet.setImage(null);
+        armorText.setText(String.valueOf(selectedHero.getProtection()));
+        inventoryList.get(backpack.getBackpackContentList().size() - 1).setImage(new Image(
+                ((Helmet) backpack.getBackpackContentList().get(backpack.getBackpackContentList().size() - 1))
                         .getImage()));
     }
 

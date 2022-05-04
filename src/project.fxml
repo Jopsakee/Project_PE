@@ -428,37 +428,49 @@
                   <Font size="22.0" />
                </font>
             </Text>
-            <ImageView fx:id="equipmentRight" fitHeight="120.0" fitWidth="120.0" layoutX="230.0" layoutY="334.0" onMouseClicked="#unequipWeaponRight" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="equipmentLeft" fitHeight="120.0" fitWidth="120.0" layoutX="38.0" layoutY="334.0" onMouseClicked="#unequipWeaponLeft" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="equipmentBody" fitHeight="120.0" fitWidth="120.0" layoutX="134.0" layoutY="484.0" onMouseClicked="#unequipBody" pickOnBounds="true" preserveRatio="true" />
-            <Text fill="#ff9900" layoutX="62.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LEFT" textAlignment="CENTER" wrappingWidth="72.0">
+            <ImageView fx:id="equipmentRight" fitHeight="120.0" fitWidth="120.0" layoutX="276.0" layoutY="334.0" onMouseClicked="#unequipWeaponRight" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="equipmentLeft" fitHeight="120.0" fitWidth="120.0" layoutX="14.0" layoutY="334.0" onMouseClicked="#unequipWeaponLeft" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="equipmentBody" fitHeight="120.0" fitWidth="120.0" layoutX="144.0" layoutY="424.0" onMouseClicked="#unequipBody" pickOnBounds="true" preserveRatio="true" />
+            <Text fill="#ff9900" layoutX="38.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LEFT" textAlignment="CENTER" wrappingWidth="72.0">
                <font>
                   <Font size="22.0" />
                </font>
             </Text>
-            <Text fill="#ff9900" layoutX="254.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RIGHT" textAlignment="CENTER" wrappingWidth="72.0">
+            <Text fill="#ff9900" layoutX="300.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RIGHT" textAlignment="CENTER" wrappingWidth="72.0">
                <font>
                   <Font size="22.0" />
                </font>
             </Text>
-            <Text fill="#ff9900" layoutX="158.0" layoutY="478.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BODY" textAlignment="CENTER" wrappingWidth="72.0">
+            <Text fill="#ff9900" layoutX="168.0" layoutY="418.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BODY" textAlignment="CENTER" wrappingWidth="72.0">
                <font>
                   <Font size="22.0" />
                </font>
             </Text>
             <Button layoutX="162.0" layoutY="735.0" mnemonicParsing="false" onAction="#closeCharacterMenu" text="Close" />
-            <Text fill="#ff9900" layoutX="56.0" layoutY="605.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GLOVES" textAlignment="CENTER" wrappingWidth="83.9453125">
+            <Text fill="#ff9900" layoutX="32.0" layoutY="605.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GLOVES" textAlignment="CENTER" wrappingWidth="83.9453125">
                <font>
                   <Font size="22.0" />
                </font>
             </Text>
-            <ImageView fx:id="equipmentGloves" fitHeight="120.0" fitWidth="120.0" layoutX="38.0" layoutY="611.0" onMouseClicked="#unequipGloves" pickOnBounds="true" preserveRatio="true" />
-            <Text fill="#ff9900" layoutX="248.0" layoutY="605.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BOOTS" textAlignment="CENTER" wrappingWidth="83.9453125">
+            <ImageView fx:id="equipmentGloves" fitHeight="120.0" fitWidth="120.0" layoutX="14.0" layoutY="611.0" onMouseClicked="#unequipGloves" pickOnBounds="true" preserveRatio="true" />
+            <Text fill="#ff9900" layoutX="294.0" layoutY="605.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BOOTS" textAlignment="CENTER" wrappingWidth="83.9453125">
                <font>
                   <Font size="22.0" />
                </font>
             </Text>
-            <ImageView fx:id="equipmentBoots" fitHeight="120.0" fitWidth="120.0" layoutX="230.0" layoutY="611.0" onMouseClicked="#unequipBoots" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="equipmentBoots" fitHeight="120.0" fitWidth="120.0" layoutX="276.0" layoutY="611.0" onMouseClicked="#unequipBoots" pickOnBounds="true" preserveRatio="true" />
+            <Text fill="#ff9900" layoutX="162.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HELMET" textAlignment="CENTER" wrappingWidth="83.9453125">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Text>
+            <ImageView fx:id="equipmentHelmet" fitHeight="120.0" fitWidth="120.0" layoutX="144.0" layoutY="274.0" onMouseClicked="#unequipHelmet" pickOnBounds="true" preserveRatio="true" />
+            <Text fill="#ff9900" layoutX="149.0" layoutY="573.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LEGGINGS" textAlignment="CENTER" wrappingWidth="109.18945312500023">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Text>
+            <ImageView fx:id="equipmentLeggings" fitHeight="120.0" fitWidth="120.0" layoutX="144.0" layoutY="581.0" onMouseClicked="#unequipLeggings" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
       <Pane fx:id="miniScreen" layoutX="14.0" layoutY="14.0" prefHeight="127.0" prefWidth="279.0" styleClass="backpack" stylesheets="@stylesheet.css" visible="false">
