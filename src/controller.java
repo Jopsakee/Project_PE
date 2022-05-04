@@ -335,6 +335,20 @@ public class controller {
         loot.add(lootImage1);
         loot.add(lootImage2);
         loot.add(lootImage3);
+        butEasy2.setStyle("-fx-background-color: #A9A9A9");
+        butEasy2.setDisable(true);
+        butEasy3.setStyle("-fx-background-color: #A9A9A9");
+        butEasy3.setDisable(true);
+        butMed1.setStyle("-fx-background-color: #A9A9A9");
+        butMed1.setDisable(true);
+        butMed2.setStyle("-fx-background-color: #A9A9A9");
+        butMed2.setDisable(true);
+        butMed3.setStyle("-fx-background-color: #A9A9A9");
+        butMed3.setDisable(true);
+        butHard1.setStyle("-fx-background-color: #A9A9A9");
+        butHard1.setDisable(true);
+        butHard2.setStyle("-fx-background-color: #A9A9A9");
+        butHard2.setDisable(true);
     }
 
     /* Van startscherm naar hero selection */
@@ -394,7 +408,7 @@ public class controller {
         characterSelection.setVisible(true);
     }
 
-    public void next() {
+    public void toLevelScreen() {
         statScreen.setVisible(false);
         miniScreen.setVisible(true);
         miniName.setText(selectedHero.getName());
@@ -411,9 +425,168 @@ public class controller {
         characterMenu.setVisible(false);
         potionCount.setText(String.valueOf(potions));
         scoreTeller.setText(String.valueOf(scoreCounter));
-        levelChecker();
+    }
+
+    public void next() {
+        miniScreen.setVisible(true);
+        miniName.setText(selectedHero.getName());
+        miniHp.setText(selectedHero.geteHitPoints() + "/" + selectedHero.getHitpoints());
+        miniCharacterImage.setImage(new Image(selectedHero.getHeadImage()));
+        levelScreen.setVisible(true);
+        fightScreen.setVisible(false);
+        backpackImage.setVisible(true);
+        potionSlot.setVisible(true);
+        potionCount.setVisible(true);
+        lootScreen.setVisible(false);
+        inventory.setVisible(false);
+        lootbag.setVisible(false);
+        characterMenu.setVisible(false);
+        potionCount.setText(String.valueOf(potions));
+        scoreTeller.setText(String.valueOf(scoreCounter));
+        // levelChecker();
         combatlog.getChildren().clear();
         nrOfLines = 0;
+        if (monsterList.get(0).getDefeated()) {
+            butEasy2.setStyle(
+                    "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+            butEasy2.setDisable(false);
+            butEasy3.setStyle("-fx-background-color: #A9A9A9");
+            butEasy3.setDisable(true);
+            butMed1.setStyle("-fx-background-color: #A9A9A9");
+            butMed1.setDisable(true);
+            butMed2.setStyle("-fx-background-color: #A9A9A9");
+            butMed2.setDisable(true);
+            butMed3.setStyle("-fx-background-color: #A9A9A9");
+            butMed3.setDisable(true);
+            butHard1.setStyle("-fx-background-color: #A9A9A9");
+            butHard1.setDisable(true);
+            butHard2.setStyle("-fx-background-color: #A9A9A9");
+            butHard2.setDisable(true);
+        }
+
+        if (monsterList.get(1).getDefeated()) {
+            butEasy2.setStyle(
+                    "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+            butEasy2.setDisable(false);
+            butEasy3.setStyle(
+                    "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+            butEasy3.setDisable(false);
+            butMed1.setStyle("-fx-background-color: #A9A9A9");
+            butMed1.setDisable(true);
+            butMed2.setStyle("-fx-background-color: #A9A9A9");
+            butMed2.setDisable(true);
+            butMed3.setStyle("-fx-background-color: #A9A9A9");
+            butMed3.setDisable(true);
+            butHard1.setStyle("-fx-background-color: #A9A9A9");
+            butHard1.setDisable(true);
+            butHard2.setStyle("-fx-background-color: #A9A9A9");
+            butHard2.setDisable(true);
+        }
+        if (monsterList.get(2).getDefeated()) {
+            butEasy2.setStyle(
+                    "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+            butEasy2.setDisable(false);
+            butEasy3.setStyle(
+                    "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+            butEasy3.setDisable(false);
+            butMed1.setStyle(
+                    "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+            butMed1.setDisable(false);
+            butMed2.setStyle("-fx-background-color: #A9A9A9");
+            butMed2.setDisable(true);
+            butMed3.setStyle("-fx-background-color: #A9A9A9");
+            butMed3.setDisable(true);
+            butHard1.setStyle("-fx-background-color: #A9A9A9");
+            butHard1.setDisable(true);
+            butHard2.setStyle("-fx-background-color: #A9A9A9");
+            butHard2.setDisable(true);
+        }
+        if (monsterList.get(3).getDefeated()) {
+            butEasy2.setStyle(
+                    "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+            butEasy2.setDisable(false);
+            butEasy3.setStyle(
+                    "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+            butEasy3.setDisable(false);
+            butMed1.setStyle(
+                    "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+            butMed1.setDisable(false);
+            butMed2.setStyle(
+                    "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+            butMed2.setDisable(false);
+            butMed3.setStyle("-fx-background-color: #A9A9A9");
+            butMed3.setDisable(true);
+            butHard1.setStyle("-fx-background-color: #A9A9A9");
+            butHard1.setDisable(true);
+            butHard2.setStyle("-fx-background-color: #A9A9A9");
+            butHard2.setDisable(true);
+        }
+        if (monsterList.get(4).getDefeated()) {
+            butEasy2.setStyle(
+                    "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+            butEasy2.setDisable(false);
+            butEasy3.setStyle(
+                    "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+            butEasy3.setDisable(false);
+            butMed1.setStyle(
+                    "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+            butMed1.setDisable(false);
+            butMed2.setStyle(
+                    "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+            butMed2.setDisable(false);
+            butMed3.setStyle(
+                    "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+            butMed3.setDisable(false);
+            butHard1.setStyle("-fx-background-color: #A9A9A9");
+            butHard1.setDisable(true);
+            butHard2.setStyle("-fx-background-color: #A9A9A9");
+            butHard2.setDisable(true);
+        }
+        if (monsterList.get(5).getDefeated()) {
+            butEasy2.setStyle(
+                    "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+            butEasy2.setDisable(false);
+            butEasy3.setStyle(
+                    "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+            butEasy3.setDisable(false);
+            butMed1.setStyle(
+                    "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+            butMed1.setDisable(false);
+            butMed2.setStyle(
+                    "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+            butMed2.setDisable(false);
+            butMed3.setStyle(
+                    "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+            butMed3.setDisable(false);
+            butHard1.setStyle(
+                    "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+            butHard1.setDisable(false);
+            butHard2.setStyle("-fx-background-color: #A9A9A9");
+            butHard2.setDisable(true);
+        }
+        if (monsterList.get(6).getDefeated()) {
+            butEasy2.setStyle(
+                    "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+            butEasy2.setDisable(false);
+            butEasy3.setStyle(
+                    "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+            butEasy3.setDisable(false);
+            butMed1.setStyle(
+                    "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+            butMed1.setDisable(false);
+            butMed2.setStyle(
+                    "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+            butMed2.setDisable(false);
+            butMed3.setStyle(
+                    "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+            butMed3.setDisable(false);
+            butHard1.setStyle(
+                    "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+            butHard1.setDisable(false);
+            butHard2.setStyle(
+                    "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
+            butHard2.setDisable(false);
+        }
     }
 
     int tellerCombatLog = 0;
@@ -425,169 +598,6 @@ public class controller {
             combatlog.setVisible(true);
         }
         tellerCombatLog++;
-    }
-
-    public void levelChecker() {
-        switch (scoreCounter) {
-            case 0:
-                butEasy2.setStyle("-fx-background-color: #A9A9A9");
-                butEasy2.setDisable(true);
-                butEasy3.setStyle("-fx-background-color: #A9A9A9");
-                butEasy3.setDisable(true);
-                butMed1.setStyle("-fx-background-color: #A9A9A9");
-                butMed1.setDisable(true);
-                butMed2.setStyle("-fx-background-color: #A9A9A9");
-                butMed2.setDisable(true);
-                butMed3.setStyle("-fx-background-color: #A9A9A9");
-                butMed3.setDisable(true);
-                butHard1.setStyle("-fx-background-color: #A9A9A9");
-                butHard1.setDisable(true);
-                butHard2.setStyle("-fx-background-color: #A9A9A9");
-                butHard2.setDisable(true);
-                break;
-            case 1:
-                butEasy2.setStyle(
-                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
-                butEasy2.setDisable(false);
-                butEasy3.setStyle("-fx-background-color: #A9A9A9");
-                butEasy3.setDisable(true);
-                butMed1.setStyle("-fx-background-color: #A9A9A9");
-                butMed1.setDisable(true);
-                butMed2.setStyle("-fx-background-color: #A9A9A9");
-                butMed2.setDisable(true);
-                butMed3.setStyle("-fx-background-color: #A9A9A9");
-                butMed3.setDisable(true);
-                butHard1.setStyle("-fx-background-color: #A9A9A9");
-                butHard1.setDisable(true);
-                butHard2.setStyle("-fx-background-color: #A9A9A9");
-                butHard2.setDisable(true);
-                break;
-            case 2:
-                butEasy2.setStyle(
-                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
-                butEasy2.setDisable(false);
-                butEasy3.setStyle(
-                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
-                butEasy3.setDisable(false);
-                butMed1.setStyle("-fx-background-color: #A9A9A9");
-                butMed1.setDisable(true);
-                butMed2.setStyle("-fx-background-color: #A9A9A9");
-                butMed2.setDisable(true);
-                butMed3.setStyle("-fx-background-color: #A9A9A9");
-                butMed3.setDisable(true);
-                butHard1.setStyle("-fx-background-color: #A9A9A9");
-                butHard1.setDisable(true);
-                butHard2.setStyle("-fx-background-color: #A9A9A9");
-                butHard2.setDisable(true);
-                break;
-            case 3:
-                butEasy2.setStyle(
-                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
-                butEasy2.setDisable(false);
-                butEasy3.setStyle(
-                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
-                butEasy3.setDisable(false);
-                butMed1.setStyle(
-                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
-                butMed1.setDisable(false);
-                butMed2.setStyle("-fx-background-color: #A9A9A9");
-                butMed2.setDisable(true);
-                butMed3.setStyle("-fx-background-color: #A9A9A9");
-                butMed3.setDisable(true);
-                butHard1.setStyle("-fx-background-color: #A9A9A9");
-                butHard1.setDisable(true);
-                butHard2.setStyle("-fx-background-color: #A9A9A9");
-                butHard2.setDisable(true);
-                break;
-            case 4:
-                butEasy2.setStyle(
-                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
-                butEasy2.setDisable(false);
-                butEasy3.setStyle(
-                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
-                butEasy3.setDisable(false);
-                butMed1.setStyle(
-                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
-                butMed1.setDisable(false);
-                butMed2.setStyle(
-                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
-                butMed2.setDisable(false);
-                butMed3.setStyle("-fx-background-color: #A9A9A9");
-                butMed3.setDisable(true);
-                butHard1.setStyle("-fx-background-color: #A9A9A9");
-                butHard1.setDisable(true);
-                butHard2.setStyle("-fx-background-color: #A9A9A9");
-                butHard2.setDisable(true);
-                break;
-            case 5:
-                butEasy2.setStyle(
-                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
-                butEasy2.setDisable(false);
-                butEasy3.setStyle(
-                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
-                butEasy3.setDisable(false);
-                butMed1.setStyle(
-                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
-                butMed1.setDisable(false);
-                butMed2.setStyle(
-                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
-                butMed2.setDisable(false);
-                butMed3.setStyle(
-                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
-                butMed3.setDisable(false);
-                butHard1.setStyle("-fx-background-color: #A9A9A9");
-                butHard1.setDisable(true);
-                butHard2.setStyle("-fx-background-color: #A9A9A9");
-                butHard2.setDisable(true);
-                break;
-            case 6:
-                butEasy2.setStyle(
-                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
-                butEasy2.setDisable(false);
-                butEasy3.setStyle(
-                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
-                butEasy3.setDisable(false);
-                butMed1.setStyle(
-                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
-                butMed1.setDisable(false);
-                butMed2.setStyle(
-                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
-                butMed2.setDisable(false);
-                butMed3.setStyle(
-                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
-                butMed3.setDisable(false);
-                butHard1.setStyle(
-                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
-                butHard1.setDisable(false);
-                butHard2.setStyle("-fx-background-color: #A9A9A9");
-                butHard2.setDisable(true);
-                break;
-            case 7:
-                butEasy2.setStyle(
-                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
-                butEasy2.setDisable(false);
-                butEasy3.setStyle(
-                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
-                butEasy3.setDisable(false);
-                butMed1.setStyle(
-                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
-                butMed1.setDisable(false);
-                butMed2.setStyle(
-                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
-                butMed2.setDisable(false);
-                butMed3.setStyle(
-                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
-                butMed3.setDisable(false);
-                butHard1.setStyle(
-                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
-                butHard1.setDisable(false);
-                butHard2.setStyle(
-                        "-fx-background-color: #000000,linear-gradient(#000000, #000000),linear-gradient(#000000, #000000),linear-gradient(#580404, #140404);");
-                butHard2.setDisable(false);
-                break;
-            default:
-                break;
-        }
     }
 
     // levels

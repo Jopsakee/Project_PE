@@ -131,7 +131,7 @@
                </font>
             </Text>
             <Button fx:id="butBack" layoutX="611.0" layoutY="676.0" mnemonicParsing="false" onAction="#back" prefHeight="55.0" prefWidth="102.0" text="Back" />
-            <Button fx:id="butNext" layoutX="714.0" layoutY="676.0" mnemonicParsing="false" onAction="#next" prefHeight="55.0" prefWidth="102.0" text="Next" />
+            <Button fx:id="butNext" layoutX="714.0" layoutY="676.0" mnemonicParsing="false" onAction="#toLevelScreen" prefHeight="55.0" prefWidth="102.0" text="Next" />
          </children>
       </Pane>
       <Pane fx:id="levelScreen" prefHeight="944.0" prefWidth="1363.0" styleClass="levelScreen" stylesheets="@stylesheet.css" visible="false">
